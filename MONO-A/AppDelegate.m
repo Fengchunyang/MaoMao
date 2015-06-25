@@ -7,6 +7,16 @@
 //
 
 #import "AppDelegate.h"
+#import "RootViewController.h"
+
+#import "ProgrammeViewController.h"
+#import "MONOViewController.h"
+#import "PictorialViewController.h"
+#import "CreatorViewController.h"
+#import "MagazineViewController.h"
+#import "PastViewController.h"
+
+#define kItemWidth 100
 
 @interface AppDelegate ()
 
@@ -20,6 +30,85 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    
+    ProgrammeViewController *proVC = [[ProgrammeViewController alloc]init];
+    MONOViewController *monoVC = [[MONOViewController alloc]init];
+    
+    PictorialViewController *picVC = [[PictorialViewController alloc]init];
+    
+    CreatorViewController *creVC = [[CreatorViewController alloc]init];
+    
+    MagazineViewController *magVC = [[MagazineViewController alloc]init];
+    
+    PastViewController *pastVC = [[PastViewController alloc]init];
+    
+    UIView *line1 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
+    line1.backgroundColor = [UIColor cyanColor];
+    line1.hidden = YES;
+    UIView *pro = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
+    UILabel *label1 = [Function createLabelWithFrame:CGRectMake(0, 10, kItemWidth, 44 - 10) name:@"节目单"];
+    label1.textColor = [UIColor whiteColor];
+    //label1.backgroundColor = [UIColor yellowColor];
+    [pro addSubview:line1];
+    [pro addSubview:label1];
+    
+    UIView *mono = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
+    UIView *line2 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
+    //line2.hidden = YES;
+    line2.backgroundColor = [UIColor cyanColor];
+    UILabel *label2 = [Function createLabelWithFrame:label1.frame name:@"MONO推荐"];
+    label2.textColor = [UIColor whiteColor];
+    //label2.backgroundColor = [UIColor yellowColor];
+    [mono addSubview:line2];
+    [mono addSubview:label2];
+    
+    UIView *pic = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
+    UIView *line3 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
+    line3.hidden = YES;
+    line3.backgroundColor = [UIColor cyanColor];
+    UILabel *label3 = [Function createLabelWithFrame:label1.frame name:@"画报"];
+    label3.textColor = [UIColor whiteColor];
+    //label3.backgroundColor = [UIColor yellowColor];
+    [pic addSubview:line3];
+    [pic addSubview:label3];
+    
+    UIView *cre = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
+    UIView *line4 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
+    line4.hidden = YES;
+    line4.backgroundColor = [UIColor cyanColor];
+    UILabel *label4 = [Function createLabelWithFrame:label1.frame name:@"造物主"];
+    label4.textColor = [UIColor whiteColor];
+    //label4.backgroundColor = [UIColor yellowColor];
+    [cre addSubview:line4];
+    [cre addSubview:label4];
+    
+    UIView *mag = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
+    UIView *line5 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
+    line5.hidden = YES;
+    line5.backgroundColor = [UIColor cyanColor];
+    UILabel *label5 = [Function createLabelWithFrame:label1.frame name:@"MONO杂粮"];
+    label5.textColor = [UIColor whiteColor];
+    //label5.backgroundColor = [UIColor yellowColor];
+    [mag addSubview:line5];
+    [mag addSubview:label5];
+    
+    UIView *past = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
+    UIView *line6 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
+    line6.hidden = YES;
+    line6.backgroundColor = [UIColor cyanColor];
+    UILabel *label6 = [Function createLabelWithFrame:label1.frame  name:@"往期"];
+    label6.textColor = [UIColor whiteColor];
+    //label6.backgroundColor = [UIColor yellowColor];
+    [past addSubview:line6];
+    [past addSubview:label6];
+    
+    
+    RootViewController *rootVC = [[RootViewController alloc]initWithNavBarItems:@[pro , mono , pic , cre , mag , past] navBarBackground:[UIColor blackColor] controllers:@[proVC , monoVC , picVC , creVC , magVC , pastVC] showPageControl:NO];;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rootVC];
+    self.window.rootViewController = nav;
+    
+    [rootVC setCurrentIndex:1 animated:YES];
     return YES;
 }
 
