@@ -11,6 +11,7 @@
 
 @interface MONOViewController : UIViewController
 
-@property (nonatomic , retain) MONOVIew *monoView;
+//@property (nonatomic , retain) MONOVIew *monoView;
+
 
 @end

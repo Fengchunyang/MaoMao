@@ -15,6 +15,9 @@
 #import "CreatorViewController.h"
 #import "MagazineViewController.h"
 #import "PastViewController.h"
+#import "TeaViewController.h"
+
+
 
 #define kItemWidth 100
 
@@ -102,15 +105,66 @@
     //label6.backgroundColor = [UIColor yellowColor];
     [past addSubview:line6];
     [past addSubview:label6];
-    
+
     
     RootViewController *rootVC = [[RootViewController alloc]initWithNavBarItems:@[pro , mono , pic , cre , mag , past] navBarBackground:[UIColor blackColor] controllers:@[proVC , monoVC , picVC , creVC , magVC , pastVC] showPageControl:NO];;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rootVC];
     self.window.rootViewController = nav;
     
     [rootVC setCurrentIndex:1 animated:YES];
+    
+    
+    
+    
+    self.k = 0;
+    
+
+    UIImage *image = [UIImage imageNamed:@"111"];
+    self.myButton = [Function createButtonWithFrame:CGRectMake(kScreenBounds.size.width - 120, kScreenBounds.size.height - 120, image.size.width, image.size.height) title:nil];
+    //[self.myButton setBackgroundImage:image forState:UIControlStateNormal];
+    
+    [self.myButton setImage:image forState:UIControlStateNormal];
+    
+    self.myButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    self.myButton.adjustsImageWhenDisabled = YES;
+    self.myButton.contentEdgeInsets = UIEdgeInsetsMake(20, 20, 0, 0);
+//    self.myButton.imageEdgeInsets = UIEdgeInsetsMake(20, 10, 0, 0);
+    self.myButton.layer.masksToBounds = YES;
+    self.myButton.layer.cornerRadius = 30;
+    self.myButton.backgroundColor = [UIColor purpleColor];
+    
+    [self.myButton addTarget:self action:@selector(teaAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+
+    [self.window addSubview:self.myButton];
+    
+    
+    
+    
+    
     return YES;
 }
+
+- (void)teaAction
+{
+    _k++;
+    TeaViewController *teaVC = [TeaViewController new];
+    if (self.k%2 == 1) {
+        
+        [self.myButton setBackgroundImage:[UIImage imageNamed:@"112"] forState:UIControlStateNormal];
+        
+        [self.window.rootViewController presentViewController:teaVC animated:YES completion:NULL];
+    }else{
+        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        [self.myButton setBackgroundImage:[UIImage imageNamed:@"111"] forState:UIControlStateNormal];
+    }
+    
+}
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

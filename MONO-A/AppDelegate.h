@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic , retain) UIButton *myButton;
+@property (nonatomic , assign) NSInteger k;
 
 @end
 

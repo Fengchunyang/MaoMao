@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 
+
 #define SCREEN_SIZE [[UIScreen mainScreen] bounds].size
 
 @interface RootViewController ()<UIScrollViewDelegate>
@@ -454,6 +455,9 @@
     [self sendNewIndex:scrollView];
 }
 
+
+
+
 @end
 
 #pragma mark - SLPagingViewControllerSegueSetController segue identifier's prefix
@@ -472,7 +476,6 @@ NSString * const SLPagingViewPrefixIdentifier = @"sl_";
         [src addViewControllers:self.destinationViewController
                   needToRefresh:NO];
 }
-
 
 
 

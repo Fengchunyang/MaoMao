@@ -10,6 +10,8 @@
 #define MONO_A_PrefixHeader_pch
 
 #define kScreenBounds [UIScreen mainScreen].bounds
+#define kMyBtnKidth 60
+#define kMonoTeaUrl @"http://mmmono.com/api/package/?package_id=10063869"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
@@ -17,3 +19,4 @@
 #endif
 
 #import "Function.h"
+#import "UIImageView+WebCache.h"

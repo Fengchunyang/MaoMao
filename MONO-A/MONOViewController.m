@@ -14,15 +14,17 @@
 
 @implementation MONOViewController
 
-- (void)loadView
-{
-    self.monoView = [[MONOVIew alloc]initWithFrame:kScreenBounds];
-    self.view = self.monoView;
-    [self.monoView release];
-}
+//- (void)loadView
+//{
+//    self.monoView = [[MONOVIew alloc]initWithFrame:kScreenBounds];
+//    self.view = self.monoView;
+//    [self.monoView release];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
     // Do any additional setup after loading the view.
 }
 

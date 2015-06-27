@@ -1,14 +1,14 @@
 //
-//  MONOVIew.m
+//  TeaView.m
 //  MONO-A
 //
 //  Created by lanouhn on 15/6/25.
 //  Copyright (c) 2015年 lanouhn. All rights reserved.
 //
 
-#import "MONOVIew.h"
+#import "TeaView.h"
 
-@implementation MONOVIew
+@implementation TeaView
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -29,7 +29,7 @@
 
 - (void)addSubviews
 {
-    self.backgroundColor = [UIColor orangeColor];
+    self.backgroundColor = [UIColor yellowColor];
 }
 
 @end

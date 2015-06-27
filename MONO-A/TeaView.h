@@ -1,5 +1,5 @@
 //
-//  ProgrammeVIew.h
+//  TeaView.h
 //  MONO-A
 //
 //  Created by lanouhn on 15/6/25.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProgrammeVIew : UIView
-
-
+@interface TeaView : UIView
 
 @end

@@ -39,8 +39,8 @@
 + (UIImageView *)createImageViewWithFrame:(CGRect)frame
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-    UIImage *image = [UIImage imageNamed:@"111.jpg"];;
-    imageView.image = image;
+    //UIImage *image = [UIImage imageNamed:@"111.jpg"];;
+    //imageView.image = image;
     imageView.userInteractionEnabled = YES;
     return [imageView autorelease];
 }
