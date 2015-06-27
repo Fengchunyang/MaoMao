@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "PictorialVIew.h"
 
-@interface PictorialViewController : UIViewController
+#import "ZZGallerySliderCell.h"
+#import "ZZGallerySliderLayout.h"
 
-@property (nonatomic , retain) PictorialVIew *pictorialView;
+@interface PictorialViewController : UIViewController<ZZGallerySliderCellDelegate, ZZGallerySliderLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+
+//@property (nonatomic , retain) PictorialVIew *pictorialView;
+
+@property (nonatomic , retain) NSMutableArray *dataArray;
+
 
 @end
