@@ -40,3 +40,9 @@
 #define DRAG_INTERVAL 170.0f
 #define HEADER_HEIGHT 60.0f
 #define RECT_RANGE 1000.0f
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif

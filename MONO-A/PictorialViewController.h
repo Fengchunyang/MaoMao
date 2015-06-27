@@ -9,14 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "PictorialVIew.h"
 
-#import "ZZGallerySliderCell.h"
-#import "ZZGallerySliderLayout.h"
+#import "RPSlidingMenuCell.h"
+#import "RPSlidingMenuLayout.h"
 
-@interface PictorialViewController : UIViewController<ZZGallerySliderCellDelegate, ZZGallerySliderLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PictorialViewController : UIViewController< UICollectionViewDataSource, UICollectionViewDelegate , RPSlidingMenuLayoutDelegate>
 
 //@property (nonatomic , retain) PictorialVIew *pictorialView;
 
 @property (nonatomic , retain) NSMutableArray *dataArray;
 
+@property (nonatomic , retain) UICollectionView *collectView;
+
+@property (nonatomic) CGFloat featureHeight;
+
+@property (nonatomic) BOOL scrollsToCollapsedRowsOnSelection;
+/**
+ The height cells should be when collapsed.  Defaults to RPSlidingCellCollapsedHeight
+ */
+@property (nonatomic) CGFloat collapsedHeight;
 
 @end

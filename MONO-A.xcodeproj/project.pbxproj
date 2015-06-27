@@ -49,11 +49,11 @@
 		34C4F84F1B3E3E8100C6215F /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F83F1B3E3E8100C6215F /* UIView+WebCacheOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		34C4F8511B3E425700C6215F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4F8501B3E425700C6215F /* ImageIO.framework */; };
 		34C4F8531B3E426100C6215F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C4F8521B3E426100C6215F /* MapKit.framework */; };
-		34C4F8CA1B3E4C3B00C6215F /* ZZGallerySliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F8C71B3E4C3B00C6215F /* ZZGallerySliderCell.m */; };
-		34C4F8CB1B3E4C3B00C6215F /* ZZGallerySliderLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F8C91B3E4C3B00C6215F /* ZZGallerySliderLayout.m */; };
 		34C4F8CE1B3E523500C6215F /* PictorialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F8CD1B3E523500C6215F /* PictorialModel.m */; };
 		34C4F8D11B3E549D00C6215F /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F8D01B3E549D00C6215F /* PhotoModel.m */; };
 		34C4F8D41B3E5E7D00C6215F /* PicSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F8D31B3E5E7D00C6215F /* PicSecondViewController.m */; };
+		34C4F9D11B3EAD3F00C6215F /* RPSlidingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F9CE1B3EAD3F00C6215F /* RPSlidingMenuCell.m */; };
+		34C4F9D21B3EAD3F00C6215F /* RPSlidingMenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,16 +151,16 @@
 		34C4F83F1B3E3E8100C6215F /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		34C4F8501B3E425700C6215F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		34C4F8521B3E426100C6215F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		34C4F8C61B3E4C3B00C6215F /* ZZGallerySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZGallerySliderCell.h; sourceTree = "<group>"; };
-		34C4F8C71B3E4C3B00C6215F /* ZZGallerySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZGallerySliderCell.m; sourceTree = "<group>"; };
-		34C4F8C81B3E4C3B00C6215F /* ZZGallerySliderLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZGallerySliderLayout.h; sourceTree = "<group>"; };
-		34C4F8C91B3E4C3B00C6215F /* ZZGallerySliderLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZGallerySliderLayout.m; sourceTree = "<group>"; };
 		34C4F8CC1B3E523500C6215F /* PictorialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictorialModel.h; sourceTree = "<group>"; };
 		34C4F8CD1B3E523500C6215F /* PictorialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictorialModel.m; sourceTree = "<group>"; };
 		34C4F8CF1B3E549D00C6215F /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		34C4F8D01B3E549D00C6215F /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		34C4F8D21B3E5E7D00C6215F /* PicSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicSecondViewController.h; sourceTree = "<group>"; };
 		34C4F8D31B3E5E7D00C6215F /* PicSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicSecondViewController.m; sourceTree = "<group>"; };
+		34C4F9CD1B3EAD3F00C6215F /* RPSlidingMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSlidingMenuCell.h; sourceTree = "<group>"; };
+		34C4F9CE1B3EAD3F00C6215F /* RPSlidingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSlidingMenuCell.m; sourceTree = "<group>"; };
+		34C4F9CF1B3EAD3F00C6215F /* RPSlidingMenuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSlidingMenuLayout.h; sourceTree = "<group>"; };
+		34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSlidingMenuLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,7 +329,7 @@
 		34C43FBB1B3BD8AD00A5D0DB /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				34C4F8C51B3E4C3B00C6215F /* ZZGallerySliderView */,
+				34C4F9CC1B3EAD3F00C6215F /* RPSlidingMenu */,
 			);
 			name = Vendors;
 			sourceTree = "<group>";
@@ -433,15 +433,15 @@
 			path = EGOImageView/SDWebImage;
 			sourceTree = "<group>";
 		};
-		34C4F8C51B3E4C3B00C6215F /* ZZGallerySliderView */ = {
+		34C4F9CC1B3EAD3F00C6215F /* RPSlidingMenu */ = {
 			isa = PBXGroup;
 			children = (
-				34C4F8C61B3E4C3B00C6215F /* ZZGallerySliderCell.h */,
-				34C4F8C71B3E4C3B00C6215F /* ZZGallerySliderCell.m */,
-				34C4F8C81B3E4C3B00C6215F /* ZZGallerySliderLayout.h */,
-				34C4F8C91B3E4C3B00C6215F /* ZZGallerySliderLayout.m */,
+				34C4F9CD1B3EAD3F00C6215F /* RPSlidingMenuCell.h */,
+				34C4F9CE1B3EAD3F00C6215F /* RPSlidingMenuCell.m */,
+				34C4F9CF1B3EAD3F00C6215F /* RPSlidingMenuLayout.h */,
+				34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */,
 			);
-			path = ZZGallerySliderView;
+			path = RPSlidingMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,7 +545,6 @@
 			files = (
 				34C4F8461B3E3E8100C6215F /* SDWebImageDownloaderOperation.m in Sources */,
 				34C4F84C1B3E3E8100C6215F /* UIImage+WebP.m in Sources */,
-				34C4F8CB1B3E4C3B00C6215F /* ZZGallerySliderLayout.m in Sources */,
 				34C4F8481B3E3E8100C6215F /* SDWebImagePrefetcher.m in Sources */,
 				34C43FC91B3BE16900A5D0DB /* PictorialViewController.m in Sources */,
 				34C4F8421B3E3E8100C6215F /* SDImageCache.m in Sources */,
@@ -554,6 +553,7 @@
 				34C43FE31B3BEF0100A5D0DB /* PictorialVIew.m in Sources */,
 				34C43FF71B3C28F000A5D0DB /* TeaTableViewCell.m in Sources */,
 				34C4F84F1B3E3E8100C6215F /* UIView+WebCacheOperation.m in Sources */,
+				34C4F9D21B3EAD3F00C6215F /* RPSlidingMenuLayout.m in Sources */,
 				34C43F981B3BD7FE00A5D0DB /* AppDelegate.m in Sources */,
 				34C4F8431B3E3E8100C6215F /* SDWebImageCompat.m in Sources */,
 				34C43FE61B3BEF1300A5D0DB /* CreatorView.m in Sources */,
@@ -568,7 +568,6 @@
 				34C43FEC1B3BEF2800A5D0DB /* PastView.m in Sources */,
 				34C4F8D41B3E5E7D00C6215F /* PicSecondViewController.m in Sources */,
 				34C43FEF1B3BF85900A5D0DB /* TeaViewController.m in Sources */,
-				34C4F8CA1B3E4C3B00C6215F /* ZZGallerySliderCell.m in Sources */,
 				34C4F84B1B3E3E8100C6215F /* UIImage+MultiFormat.m in Sources */,
 				34C43FD21B3BE1E100A5D0DB /* PastViewController.m in Sources */,
 				34C4F8401B3E3E8100C6215F /* MKAnnotationView+WebCache.m in Sources */,
@@ -577,6 +576,7 @@
 				34C4F84E1B3E3E8100C6215F /* UIImageView+WebCache.m in Sources */,
 				34C43FBF1B3BD92000A5D0DB /* RootViewController.m in Sources */,
 				34C43FCF1B3BE1C400A5D0DB /* MagazineViewController.m in Sources */,
+				34C4F9D11B3EAD3F00C6215F /* RPSlidingMenuCell.m in Sources */,
 				34C4F84A1B3E3E8100C6215F /* UIImage+GIF.m in Sources */,
 				34C4F8451B3E3E8100C6215F /* SDWebImageDownloader.m in Sources */,
 				34C43FE91B3BEF2000A5D0DB /* MagazineView.m in Sources */,

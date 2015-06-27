@@ -11,37 +11,139 @@
 #import "PictorialModel.h"
 #import "PicSecondViewController.h"
 
+#define kIdent @"myIdetn"
+
 #define kPictorialUrl @"http://iliangcang.com:8200/topic/list?app_key=iphone&build=143&osVersion=82&v=2.2.0"
 
 @interface PictorialViewController ()<NetWorkEngineDelegate>
 
 
-
-{
-    UICollectionView *galleryCollectionView;
-}
-
 @end
 
 @implementation PictorialViewController
 
-//- (void)loadView
-//{
-//    self.pictorialView = [[PictorialVIew alloc]initWithFrame:kScreenBounds];
-//    self.view = self.pictorialView;
-//    [self.pictorialView release];
-//}
+
+- (instancetype)init{
+    
+    self = [super init];
+    
+    if (self){
+        _featureHeight = RPSlidingCellFeatureHeight;
+        _collapsedHeight = RPSlidingCellCollapsedHeight;
+        _scrollsToCollapsedRowsOnSelection = YES;
+    }
+    
+    return self;
+}
+
+- (void)awakeFromNib {
+    self.featureHeight = RPSlidingCellFeatureHeight;
+    self.collapsedHeight = RPSlidingCellCollapsedHeight;
+    self.scrollsToCollapsedRowsOnSelection = YES;
+}
+
+
+
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     
     [self getFromData];
     
-    [self initCollectionView];
+    RPSlidingMenuLayout *layout = [[RPSlidingMenuLayout alloc]initWithDelegate:self];
+    
+    
+    
+    self.collectView = [[UICollectionView alloc]initWithFrame:[UIScreen mainScreen].bounds collectionViewLayout:layout];
+    
+    self.collectView.delegate = self;
+    self.collectView.dataSource = self;
+    
+    [self.collectView registerClass:[RPSlidingMenuCell class] forCellWithReuseIdentifier:kIdent];
+    
+    if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    
+    [self.view addSubview:self.collectView];
+    
+    
     
     // Do any additional setup after loading the view.
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+- (void)scrollToRow:(NSInteger)row animated:(BOOL)animated {
+    
+    NSInteger rowOffset = RPSlidingCellDragInterval * row;
+    
+    // do not need to flip to that row if already on it
+    if (self.collectView.contentOffset.y == rowOffset) return;
+    
+    // show the category they picked
+    [self.collectView setContentOffset:CGPointMake(0.0f, rowOffset) animated:animated];
+    
+}
+
+#pragma mark - RPSlidingMenuLayoutDelegate
+
+- (CGFloat)heightForFeatureCell {
+    return self.featureHeight;
+}
+
+- (CGFloat)heightForCollapsedCell {
+    return self.collapsedHeight;
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    RPSlidingMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kIdent forIndexPath:indexPath];
+    PictorialModel *model = [[PictorialModel alloc]init];
+    
+    model =  self.dataArray[indexPath.row];
+    
+    
+    cell.textLabel.text = model.title;
+    cell.detailTextLabel.text = model.descrip;
+    [cell.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:model.photo.url] placeholderImage:[UIImage imageNamed:@"test.jpg"]];
+    
+
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self scrollToRow:indexPath.row animated:YES];
+    
+
+    NSString *url = ((PictorialModel *)self.dataArray[indexPath.row]).access_url;
+    
+    PicSecondViewController *picSecondVC = [[PicSecondViewController alloc]init];
+    picSecondVC.allUrl = url;
+    [self presentViewController:picSecondVC animated:YES completion:nil];
+
+    
+    
+    
+    
+}
+
+#pragma mark - 数据
 - (NSMutableArray *)dataArray
 {
     if (!_dataArray) {
@@ -72,103 +174,9 @@
         [picModel release];
     }
     
-    [galleryCollectionView reloadData];
+    [self.collectView reloadData];
     
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-//-(void)initData
-//{
-//    for (int i=0; i<20; i++) {
-//        [self.dataArray addObject:@"test.jpg"];
-//    }
-//}
-
--(void)initCollectionView
-{
-    ZZGallerySliderLayout *layout = [[ZZGallerySliderLayout alloc] init];
-    [layout setContentSize:10000];
-    galleryCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CELL_WIDTH, CGRectGetHeight([UIScreen mainScreen].bounds)) collectionViewLayout:layout];
-    [galleryCollectionView registerClass:[ZZGallerySliderCell class] forCellWithReuseIdentifier:@"CELL"];
-    galleryCollectionView.delegate = self;
-    galleryCollectionView.dataSource = self;
-    [self.view addSubview:galleryCollectionView];
-}
-
-#pragma -mark UICollectionView 代理方法
-
--(NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.dataArray.count+1;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.row == 0){
-        return CGSizeMake(CELL_WIDTH, HEADER_HEIGHT);
-    }else if(indexPath.row == 1){
-        return CGSizeMake(CELL_WIDTH, CELL_CURRHEIGHT);
-    }else{
-        return CGSizeMake(CELL_WIDTH, CELL_HEIGHT);
-    }
-}
-
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ZZGallerySliderCell *cell = [cv dequeueReusableCellWithReuseIdentifier:@"CELL" forIndexPath:indexPath];
-    cell.delegate = self;
-    cell.tag = indexPath.row;
-    [cell setIndex:indexPath.row];
-    [cell reset];
-    
-    if(indexPath.row == 0){
-        cell.imageView.image = nil;
-    }else{
-        if(indexPath.row == 1){
-            [cell revisePositionAtFirstCell];
-        }
-        
-        PictorialModel *model = [[PictorialModel alloc]init];
-        model =  self.dataArray[indexPath.row - 1];
-        [cell setNameLabel:model.title];
-        [cell setDescLabel:model.descrip];
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.photo.url] placeholderImage:[UIImage imageNamed:@"test.jpg"]];
-//        UIImage *image = [UIImage imageNamed:[self.dataArray objectAtIndex:indexPath.row-1]];
-//        cell.imageView.image = image;
-    }
-    return cell;
-}
-
-
-#pragma mark - 详情页面
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *url = ((PictorialModel *)self.dataArray[indexPath.row]).access_url;
-    
-    PicSecondViewController *picSecondVC = [[PicSecondViewController alloc]init];
-    picSecondVC.allUrl = url;
-    [self presentViewController:picSecondVC animated:YES completion:nil];
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
