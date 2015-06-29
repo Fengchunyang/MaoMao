@@ -23,9 +23,7 @@
 @property (nonatomic) CGFloat featureHeight;
 
 @property (nonatomic) BOOL scrollsToCollapsedRowsOnSelection;
-/**
- The height cells should be when collapsed.  Defaults to RPSlidingCellCollapsedHeight
- */
+
 @property (nonatomic) CGFloat collapsedHeight;
 
 @end

@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ProgrammeVIew.h"
 
-@interface ProgrammeViewController : UIViewController
+@interface ProgrammeViewController : UIViewController<UICollectionViewDataSource , UICollectionViewDelegate>
 
 @property (nonatomic , retain) ProgrammeVIew *programmeView;
+
+@property (nonatomic , retain) UICollectionView *collectionView;
+
+@property (nonatomic, strong) NSArray *galleryImages;
+@property (nonatomic, readonly, getter=isFullscreen) BOOL fullscreen;
+@property (nonatomic, readonly, getter=isTransitioning) BOOL transitioning;
 
 @end
