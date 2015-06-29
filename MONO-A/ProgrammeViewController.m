@@ -7,15 +7,20 @@
 //
 
 #import "ProgrammeViewController.h"
+#import "ProCollectionViewCell.h"
+#import "ProModel.h"
+#import "TodayViewController.h"
 
 #import "HACollectionViewSmallLayout.h"
 #import "HACollectionViewLargeLayout.h"
+
+#define kProUrl @"http://iphone.myzaker.com/zaker/apps_v3.php?_appid=iphone&_version=6.11&act=getAllAppsData"
 
 #define kTransitionSpeed 0.02f
 #define kLargeLayoutScale 2.5F
 
 
-@interface ProgrammeViewController ()
+@interface ProgrammeViewController ()<NetWorkEngineDelegate>
 
 @property (nonatomic, assign) NSInteger slide;
 @property (nonatomic, strong) UIView *mainView;
@@ -32,6 +37,9 @@
 @property (strong, nonatomic) UIPinchGestureRecognizer *pinch;
 @property (nonatomic) CGFloat initialScale;
 
+@property (nonatomic , retain) NSMutableArray *dataArray;
+
+
 @end
 
 @implementation ProgrammeViewController
@@ -47,22 +55,18 @@
     [super viewDidLoad];
     
     
+    [self getDataFromNet];
     self.galleryImages = @[@"Image1", @"Image2", @"Image3", @"Image4"];
     _slide = 0;
     
-    UIPinchGestureRecognizer *gesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(didReceivePinchGesture:)];
-    [_collectionView addGestureRecognizer:gesture];
     
     // Custom layouts
     _smallLayout = [[HACollectionViewSmallLayout alloc] init];
     _largeLayout = [[HACollectionViewLargeLayout alloc] init];
     
     
-    //    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
-    //    [_collectionView addGestureRecognizer:pinchGestureRecognizer];
-    
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 314, 375, 667-314) collectionViewLayout:_smallLayout];
-    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+    [_collectionView registerClass:[ProCollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     
@@ -177,11 +181,140 @@
     // First Load
     [self changeSlide];
     
-    // Loop gallery - fix loop: http://bynomial.com/blog/?p=67
+
     NSTimer *timer = [NSTimer timerWithTimeInterval:5.0f target:self selector:@selector(changeSlide) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     // Do any additional setup after loading the view.
+}
+
+#pragma mark - 获取数据
+- (void)getDataFromNet
+{
+    NetWorkEngine *net = [NetWorkEngine engineWithURL:[NSURL URLWithString:kProUrl] parameters:nil deleagte:self];
+    [net start];
+}
+
+- (void)netWorkDidFinishLoading:(NetWorkEngine *)engine withInfo:(id)info
+{
+    NSData *data = (NSData *)info;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSDictionary *dic1 = dic[@"data"];
+    NSArray *arr = dic1[@"datas"];
+   
+    for (NSDictionary *dic2  in arr) {
+        
+        if ([dic2[@"title"]isEqualToString:@"主题订阅"])
+        {
+            NSArray *sonsArr = dic2[@"sons"];
+            for (NSDictionary *newDic in sonsArr) {
+                if ([newDic[@"title"]isEqualToString:@"苹果"]) {
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                    
+                }
+                if ([newDic[@"title"]isEqualToString:@"摄影学堂"]){
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                }
+       
+                if ([newDic[@"title"]isEqualToString:@"BAT"]){
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                }
+            }
+        }
+        
+        
+        
+         if ([dic2[@"title"]isEqualToString:@"视觉"])
+         {
+             NSArray *sonsArr = dic2[@"sons"];
+             for (NSDictionary *newDic in sonsArr)
+             {
+                 if ([newDic[@"title"]isEqualToString:@"摄影精选"]) {
+                     NSArray *newSonsarr = newDic[@"sons"];
+                     
+                     for (NSDictionary *dic in newSonsarr) {
+                         if ([dic[@"title"]isEqualToString:@"时尚街拍"]) {
+                             ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
+                             [self.dataArray addObject:proModel];
+                         }
+                         
+                         if ([dic[@"title"]isEqualToString:@"视觉志"]) {
+                             ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
+                             [self.dataArray addObject:proModel];
+                         }
+                     }
+                     
+                     break;
+                     
+                 }
+                 
+                 
+             }
+         }
+        
+        
+        
+        if ([dic2[@"title"]isEqualToString:@"科技"]) {
+             NSArray *sonsArr = dic2[@"sons"];
+            for (NSDictionary *newDic in sonsArr) {
+                if ([newDic[@"title"]isEqualToString:@"科技频道"]) {
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                    
+                }
+                
+                if ([newDic[@"title"]isEqualToString:@"极客公园"]) {
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                    
+                }
+                
+                if ([newDic[@"title"]isEqualToString:@"观察者网-科技"]) {
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                    
+                }
+            }
+        }
+        
+        
+        
+        if ([dic2[@"title"]isEqualToString:@"娱乐"]){
+            NSArray *sonsArr = dic2[@"sons"];
+            for (NSDictionary *newDic in sonsArr){
+                if ([newDic[@"title"]isEqualToString:@"电影资讯"]) {
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                    
+                }
+                
+                if ([newDic[@"title"]isEqualToString:@"凤凰网娱乐"]) {
+                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                    [self.dataArray addObject:proModel];
+                    
+                }
+
+            }
+        }
+        
+        
+        
+    }
+    
+    [self.collectionView reloadData];
+    
+}
+
+#pragma mark - 懒加载
+- (NSMutableArray *)dataArray
+{
+    if (!_dataArray) {
+        self.dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
 }
 
 
@@ -192,31 +325,31 @@
 }
 
 
-#pragma mark - UIPinchGestureRecognizer
-- (void)didReceivePinchGesture:(UIPinchGestureRecognizer*)gesture
-{
-    NSLog(@"scale %f", gesture.scale);
-}
-
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return self.dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+   ProCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
     cell.layer.cornerRadius = 4;
     
     UITapGestureRecognizer *twoFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleFingerTap:)];
     twoFingerTap.numberOfTouchesRequired = 2;
     [cell addGestureRecognizer:twoFingerTap];
+   
+    cell.titleLabel.text = ((ProModel *)self.dataArray[indexPath.row]).title;
     
     UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
+    
+
+    
     cell.backgroundView = backgroundView;
+    
     
     return cell;
 }
@@ -261,6 +394,12 @@
         } completion:^(BOOL finished) {
             _transitioning = NO;
         }];
+        
+        
+        TodayViewController *today = [[TodayViewController alloc]init];
+        today.TodayUrl = ((ProModel *)self.dataArray[indexPath.row]).api_url;
+        [self presentViewController:today animated:YES completion:nil];
+        
     }
 }
 

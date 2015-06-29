@@ -11,7 +11,7 @@
 #define kTeaImageViewHeight 100
 #define kTitleLabelHeight 20
 #define kContentLabelHeight 40
-#define kSpace 10
+
 
 @implementation TeaTableViewCell
 

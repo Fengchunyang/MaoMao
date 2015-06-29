@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MONOVIew.h"
 
-@interface MONOViewController : UIViewController
+@interface MONOViewController : UIViewController<UITableViewDataSource , UITableViewDelegate>
+@property (nonatomic , retain)UITableView *tableView;
+@property (nonatomic , retain)NSDictionary *bigDic;
+@property (nonatomic , retain)NSMutableArray *arr;
+@property (nonatomic , retain)ThirdPageModelCell *PageCell;
+@property (nonatomic , retain)ThirdModelCell *ModelCell;
 
 //@property (nonatomic , retain) MONOVIew *monoView;
 

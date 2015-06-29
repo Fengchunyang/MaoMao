@@ -21,8 +21,11 @@
 #import "Function.h"
 #import "UIImageView+WebCache.h"
 
-
-
+#define kSpace 5
+#import "ThirdPageModelCell.h"
+#import "ThirdModelCell.h"
+#import "DataModel.h"
+#import "NetWorkEngine.h"
 
 #define CELL_HEIGHT 100 //普通高度
 #define CELL_WIDTH 375
