@@ -13,4 +13,6 @@
 @property (nonatomic , retain) UITableView *tableView;
 @property (nonatomic , retain) NSString *TodayUrl;
 
+@property (nonatomic , retain) UIButton *backBtn;
+
 @end

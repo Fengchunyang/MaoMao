@@ -10,6 +10,7 @@
 #import "ProCollectionViewCell.h"
 #import "ProModel.h"
 #import "TodayViewController.h"
+#import "AppDelegate.h"
 
 #import "HACollectionViewSmallLayout.h"
 #import "HACollectionViewLargeLayout.h"
@@ -65,7 +66,7 @@
     _largeLayout = [[HACollectionViewLargeLayout alloc] init];
     
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 314, 375, 667-314) collectionViewLayout:_smallLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 667-270, 375, 270) collectionViewLayout:_smallLayout];
     [_collectionView registerClass:[ProCollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
@@ -89,7 +90,8 @@
     
     
     // Init mainView
-    _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 667)];
+    NSLog(@"%@",NSStringFromCGRect(_mainView.frame));
     _mainView.clipsToBounds = YES;
     _mainView.layer.cornerRadius = 4;
     [self.view insertSubview:_mainView belowSubview:_collectionView];
@@ -188,6 +190,17 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.collectionView reloadData];
+    self.mainView.frame = CGRectMake(0, 0, 375, 667);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.mainView.frame = CGRectMake(0, 0, 375, 667);
+}
+
 #pragma mark - 获取数据
 - (void)getDataFromNet
 {
@@ -198,111 +211,115 @@
 - (void)netWorkDidFinishLoading:(NetWorkEngine *)engine withInfo:(id)info
 {
     NSData *data = (NSData *)info;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    NSDictionary *dic1 = dic[@"data"];
-    NSArray *arr = dic1[@"datas"];
-   
-    for (NSDictionary *dic2  in arr) {
+    if (data) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSDictionary *dic1 = dic[@"data"];
+        NSArray *arr = dic1[@"datas"];
         
-        if ([dic2[@"title"]isEqualToString:@"主题订阅"])
-        {
-            NSArray *sonsArr = dic2[@"sons"];
-            for (NSDictionary *newDic in sonsArr) {
-                if ([newDic[@"title"]isEqualToString:@"苹果"]) {
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
+        for (NSDictionary *dic2  in arr) {
+            
+            if ([dic2[@"title"]isEqualToString:@"主题订阅"])
+            {
+                NSArray *sonsArr = dic2[@"sons"];
+                for (NSDictionary *newDic in sonsArr) {
+                    if ([newDic[@"title"]isEqualToString:@"苹果"]) {
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                        
+                    }
+                    if ([newDic[@"title"]isEqualToString:@"摄影学堂"]){
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                    }
                     
-                }
-                if ([newDic[@"title"]isEqualToString:@"摄影学堂"]){
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
-                }
-       
-                if ([newDic[@"title"]isEqualToString:@"BAT"]){
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
+                    if ([newDic[@"title"]isEqualToString:@"BAT"]){
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                    }
                 }
             }
-        }
-        
-        
-        
-         if ([dic2[@"title"]isEqualToString:@"视觉"])
-         {
-             NSArray *sonsArr = dic2[@"sons"];
-             for (NSDictionary *newDic in sonsArr)
-             {
-                 if ([newDic[@"title"]isEqualToString:@"摄影精选"]) {
-                     NSArray *newSonsarr = newDic[@"sons"];
-                     
-                     for (NSDictionary *dic in newSonsarr) {
-                         if ([dic[@"title"]isEqualToString:@"时尚街拍"]) {
-                             ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
-                             [self.dataArray addObject:proModel];
-                         }
-                         
-                         if ([dic[@"title"]isEqualToString:@"视觉志"]) {
-                             ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
-                             [self.dataArray addObject:proModel];
-                         }
-                     }
-                     
-                     break;
-                     
-                 }
-                 
-                 
-             }
-         }
-        
-        
-        
-        if ([dic2[@"title"]isEqualToString:@"科技"]) {
-             NSArray *sonsArr = dic2[@"sons"];
-            for (NSDictionary *newDic in sonsArr) {
-                if ([newDic[@"title"]isEqualToString:@"科技频道"]) {
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
+            
+            
+            
+            if ([dic2[@"title"]isEqualToString:@"视觉"])
+            {
+                NSArray *sonsArr = dic2[@"sons"];
+                for (NSDictionary *newDic in sonsArr)
+                {
+                    if ([newDic[@"title"]isEqualToString:@"摄影精选"]) {
+                        NSArray *newSonsarr = newDic[@"sons"];
+                        
+                        for (NSDictionary *dic in newSonsarr) {
+                            if ([dic[@"title"]isEqualToString:@"时尚街拍"]) {
+                                ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
+                                [self.dataArray addObject:proModel];
+                            }
+                            
+                            if ([dic[@"title"]isEqualToString:@"视觉志"]) {
+                                ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
+                                [self.dataArray addObject:proModel];
+                            }
+                        }
+                        
+                        break;
+                        
+                    }
                     
-                }
-                
-                if ([newDic[@"title"]isEqualToString:@"极客公园"]) {
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
-                    
-                }
-                
-                if ([newDic[@"title"]isEqualToString:@"观察者网-科技"]) {
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
                     
                 }
             }
-        }
-        
-        
-        
-        if ([dic2[@"title"]isEqualToString:@"娱乐"]){
-            NSArray *sonsArr = dic2[@"sons"];
-            for (NSDictionary *newDic in sonsArr){
-                if ([newDic[@"title"]isEqualToString:@"电影资讯"]) {
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
+            
+            
+            
+            if ([dic2[@"title"]isEqualToString:@"科技"]) {
+                NSArray *sonsArr = dic2[@"sons"];
+                for (NSDictionary *newDic in sonsArr) {
+                    if ([newDic[@"title"]isEqualToString:@"科技频道"]) {
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                        
+                    }
                     
-                }
-                
-                if ([newDic[@"title"]isEqualToString:@"凤凰网娱乐"]) {
-                    ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
-                    [self.dataArray addObject:proModel];
+                    if ([newDic[@"title"]isEqualToString:@"极客公园"]) {
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                        
+                    }
                     
+                    if ([newDic[@"title"]isEqualToString:@"观察者网-科技"]) {
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                        
+                    }
                 }
-
             }
+            
+            
+            
+            if ([dic2[@"title"]isEqualToString:@"娱乐"]){
+                NSArray *sonsArr = dic2[@"sons"];
+                for (NSDictionary *newDic in sonsArr){
+                    if ([newDic[@"title"]isEqualToString:@"电影资讯"]) {
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                        
+                    }
+                    
+                    if ([newDic[@"title"]isEqualToString:@"凤凰网娱乐"]) {
+                        ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
+                        [self.dataArray addObject:proModel];
+                        
+                    }
+                    
+                }
+            }
+            
+            
+            
         }
-        
-        
-        
     }
+    
+   
     
     [self.collectionView reloadData];
     
@@ -358,6 +375,26 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    _collectionView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    
+    [_collectionView snapshotViewAfterScreenUpdates:YES];
+    
+    
+    [UIView animateWithDuration:0.35 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        _collectionView.backgroundColor = [UIColor blackColor];
+        
+        // Transform to zoom in effect
+        _mainView.transform = CGAffineTransformScale(_mainView.transform, 0.96, 0.96);
+        
+    } completion:^(BOOL finished) {
+          _mainView.transform = CGAffineTransformMakeScale(1, 1);
+    }];
+    
+    
+    /*
+    
     // Start transition
     _transitioning = YES;
     
@@ -395,12 +432,23 @@
             _transitioning = NO;
         }];
         
-        
-        TodayViewController *today = [[TodayViewController alloc]init];
-        today.TodayUrl = ((ProModel *)self.dataArray[indexPath.row]).api_url;
-        [self presentViewController:today animated:YES completion:nil];
+     
+    
         
     }
+
+*/
+    
+    
+    TodayViewController *today = [[TodayViewController alloc]init];
+    today.TodayUrl = ((ProModel *)self.dataArray[indexPath.row]).api_url;
+//    [self.navigationController pushViewController:today animated:YES];
+    
+//    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    [(UINavigationController *)appdelegate.window.rootViewController pushViewController:today animated:YES];
+    
+    [self presentViewController:today animated:YES completion:nil];
+
 }
 
 

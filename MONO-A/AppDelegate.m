@@ -107,8 +107,12 @@
     [past addSubview:label6];
 
     
-    RootViewController *rootVC = [[RootViewController alloc]initWithNavBarItems:@[pro , mono , pic , cre , mag , past] navBarBackground:[UIColor blackColor] controllers:@[proVC , monoVC , picVC , creVC , magVC , pastVC] showPageControl:NO];;
+    
+    RootViewController *rootVC = [[RootViewController alloc]initWithNavBarItems:@[pro , mono , pic , cre , mag , past] navBarBackground:[UIColor clearColor] controllers:@[proVC , monoVC , picVC , creVC , magVC , pastVC] showPageControl:NO];;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:rootVC];
+    
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"bg-tab"] forBarMetrics:UIBarMetricsDefault];
+    
     self.window.rootViewController = nav;
     
     [rootVC setCurrentIndex:1 animated:YES];

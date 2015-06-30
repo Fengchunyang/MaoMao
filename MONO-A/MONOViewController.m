@@ -63,10 +63,13 @@
     NSData *data = (NSData *)info;
     
     //大字典
-    self.bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    
-    //字典里的大数组
-    self.arr = [self.bigDic objectForKey:@"items"];
+    if (data) {
+        self.bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        //字典里的大数组
+        self.arr = [self.bigDic objectForKey:@"items"];
+    }
+   
     
     [self.tableView reloadData];
     

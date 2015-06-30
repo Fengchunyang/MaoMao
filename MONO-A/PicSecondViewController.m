@@ -27,9 +27,11 @@
     [self.view addSubview:web];
     
     self.backBtn = [UIButton buttonWithType:1];
-    [self.backBtn setTitle:@"back" forState:0];
-    self.backBtn.frame = CGRectMake(100, 100, 100, 100);
-    self.backBtn.backgroundColor = [UIColor yellowColor];
+    self.backBtn.backgroundColor = [UIColor clearColor];
+    self.backBtn.frame = CGRectMake(30, self.view.frame.size.height - 70, 50, 50);
+    self.backBtn.layer.cornerRadius = 25;
+    self.backBtn.layer.masksToBounds = YES;
+    [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.

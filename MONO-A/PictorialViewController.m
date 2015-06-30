@@ -161,17 +161,21 @@
 - (void)netWorkDidFinishLoading:(NetWorkEngine *)engine withInfo:(id)info
 {
     NSData *data = (NSData *)info;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
-    NSDictionary *first = dic[@"data"];
-    NSArray *arr = first[@"items"];
-    
-    for (NSDictionary *dic in arr)
-    {
-        PictorialModel *picModel = [[PictorialModel alloc]initWithDictionary:dic];
-        [self.dataArray addObject:picModel];
+    if (data) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
-        [picModel release];
+        NSDictionary *first = dic[@"data"];
+        NSArray *arr = first[@"items"];
+        
+        for (NSDictionary *dic in arr)
+        {
+            PictorialModel *picModel = [[PictorialModel alloc]initWithDictionary:dic];
+            [self.dataArray addObject:picModel];
+            
+            [picModel release];
+        }
+
     }
     
     [self.collectView reloadData];

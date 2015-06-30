@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TodayModel.h"
 
 @interface TodayTableViewCell : UITableViewCell
 
 @property (nonatomic , retain) UIImageView *topImageView;
 @property (nonatomic , retain) UIImageView *smallImageView;
+@property (nonatomic , retain) UILabel *title;
+@property (nonatomic , retain) UILabel *leftLabel;
+
+@property (nonatomic , retain) TodayModel *todayModel;
+
 
 @end
