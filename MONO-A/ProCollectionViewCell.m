@@ -38,6 +38,8 @@
 - (void)setupTextLabel
 {
     self.titleLabel = [[UILabel alloc]init];
+    self.titleLabel.font = [UIFont systemFontOfSize:20];
+    [self.titleLabel setTextColor:[UIColor whiteColor]];
     [self.contentView addSubview:self.titleLabel];
 }
 

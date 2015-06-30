@@ -32,7 +32,6 @@
     self.arr = [self.bigDic objectForKey:@"items"];
     
     self.link = [[self.arr objectAtIndex:self.indexPath.row] objectForKey:@"link"];
-    NSLog(@"self.link = %@" , self.link);
     [self downLoding];
     
     self.backBtn = [UIButton buttonWithType:1];

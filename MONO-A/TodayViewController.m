@@ -9,10 +9,13 @@
 #import "TodayViewController.h"
 #import "TodayTableViewCell.h"
 #import "TodayModel.h"
+#import "TodayDetailViewController.h"
 
 @interface TodayViewController ()<NetWorkEngineDelegate>
 
 @property (nonatomic , retain) NSMutableArray *dataArray;
+@property (nonatomic , retain) NSMutableArray *images;
+@property (nonatomic , assign) NSInteger slide;
 
 @end
 
@@ -20,7 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.images = [NSMutableArray array];
+    self.slide = 0;
     [self getDataFromNet];
     
     self.view.backgroundColor = [UIColor yellowColor];
@@ -40,7 +44,7 @@
     
 //    NSLog(@"%@",self.TodayUrl);
     
-//    self.tableView.rowHeight = 120;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -60,13 +64,13 @@
     NSArray *arr = newDic[@"articles"];
     
     for (NSDictionary *dic in arr) {
-        if (dic[@"full_url"]&&((NSString *)dic[@"full_url"]).length > 0) {
+        if (dic[@"full_url"]&&((NSString *)dic[@"full_url"]).length > 0&&dic[@"media"]&&((NSArray *)dic[@"media"]).count > 0) {
             TodayModel *moday = [[TodayModel alloc]initWithDictionary:dic];
             
             NSArray *array = dic[@"media"];
             
             if (array.count > 3) {
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i < 3; i++) {
                     NSDictionary *dic1 = array[i];
                     moday.photo = dic1[@"url"];
                     [moday.imageArray addObject:moday.photo];
@@ -120,7 +124,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    TodayTableViewCell *cell = (TodayTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+    
+    return cell.frame.size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,24 +138,68 @@
         
     }
   
+    
+    
     TodayModel *model = [[TodayModel alloc]init];
     model = self.dataArray[indexPath.row];
     //cell.textLabel.text = str;
     
     cell.title.text = model.title;
-//    cell.leftLabel.text = model.auther_name;
-//    if (model.imageArray.count > 2) {
-//        
-//        
-//        
-//        
-//    }else{
-//        [cell.topImageView sd_setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:[UIImage imageNamed:@"test"]];
-//    }
+    cell.leftLabel.text = model.auther_name;
     
     
+    if (model.imageArray.count > 3) {
+       
+//        for (NSString *str1 in model.imageArray) {
+//            UIImageView *imageView = [[UIImageView alloc]init];
+//            [imageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"test"]];
+//            [self.images addObject:imageView];
+//            
+//        }
+//        
+//        [self changeSlide:indexPath];
+//        
+//        NSTimer *time = [NSTimer timerWithTimeInterval:4 target:self selector:@selector(changeSlide:) userInfo:nil repeats:YES];
+//        [[NSRunLoop mainRunLoop]addTimer:time forMode:NSRunLoopCommonModes];
+       
+         NSString *str = model.imageArray[0];
+        
+        [cell.topImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"test"]];
+        
+        
+    }else{
+        [cell.topImageView sd_setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:[UIImage imageNamed:@"test"]];
+    }
+    
+    [cell HeightForCell];
     
     return cell;
+}
+
+- (void)changeSlide:(NSIndexPath *)indexPath
+{
+    TodayTableViewCell *cell = (TodayTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+    if (_slide > self.images.count - 1) {
+        _slide = 0;
+    }
+    
+    UIImage *image = ((UIImageView *)self.images[_slide]).image;
+    
+    [UIView transitionWithView:cell.contentView duration:0.6 options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationCurveEaseInOut animations:^{
+        cell.topImageView.image = image;
+    } completion:nil];
+    
+    _slide++;
+    
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TodayDetailViewController *today = [[TodayDetailViewController alloc]init];
+    today.todayDatailURL = ((TodayModel *)self.dataArray[indexPath.row]).full_url;
+    [self presentViewController:today animated:YES completion:nil];
 }
 /*
 #pragma mark - Navigation

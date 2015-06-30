@@ -40,6 +40,8 @@
 
 @property (nonatomic , retain) NSMutableArray *dataArray;
 
+@property (nonatomic , retain) NSMutableArray *imageArray;
+
 
 @end
 
@@ -55,6 +57,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.imageArray = [NSMutableArray array];
+    for (int i = 0; i < 9; i++) {
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpg",i+1];
+        UIImage *image = [UIImage imageNamed:imageName];
+        [self.imageArray addObject:image];
+    }
     
     [self getDataFromNet];
     self.galleryImages = @[@"Image1", @"Image2", @"Image3", @"Image4"];
@@ -91,7 +99,6 @@
     
     // Init mainView
     _mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 667)];
-    NSLog(@"%@",NSStringFromCGRect(_mainView.frame));
     _mainView.clipsToBounds = YES;
     _mainView.layer.cornerRadius = 4;
     [self.view insertSubview:_mainView belowSubview:_collectionView];
@@ -250,10 +257,6 @@
                         NSArray *newSonsarr = newDic[@"sons"];
                         
                         for (NSDictionary *dic in newSonsarr) {
-                            if ([dic[@"title"]isEqualToString:@"时尚街拍"]) {
-                                ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
-                                [self.dataArray addObject:proModel];
-                            }
                             
                             if ([dic[@"title"]isEqualToString:@"视觉志"]) {
                                 ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
@@ -355,13 +358,19 @@
     cell.backgroundColor = [UIColor whiteColor];
     cell.layer.cornerRadius = 4;
     
-    UITapGestureRecognizer *twoFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleFingerTap:)];
-    twoFingerTap.numberOfTouchesRequired = 2;
-    [cell addGestureRecognizer:twoFingerTap];
+//    UITapGestureRecognizer *twoFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleFingerTap:)];
+//    twoFingerTap.numberOfTouchesRequired = 2;
+//    [cell addGestureRecognizer:twoFingerTap];
    
     cell.titleLabel.text = ((ProModel *)self.dataArray[indexPath.row]).title;
     
-    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"test"]];
+    UIImage *image = self.imageArray[indexPath.row];
+    
+    UIEdgeInsets inset = UIEdgeInsetsMake(20, 20, 10, 10);
+    [image resizableImageWithCapInsets:inset resizingMode:UIImageResizingModeStretch];
+    
+    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:image];
+    
     
 
     
@@ -383,7 +392,6 @@
     
     [UIView animateWithDuration:0.35 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
-        _collectionView.backgroundColor = [UIColor blackColor];
         
         // Transform to zoom in effect
         _mainView.transform = CGAffineTransformScale(_mainView.transform, 0.96, 0.96);
@@ -442,10 +450,6 @@
     
     TodayViewController *today = [[TodayViewController alloc]init];
     today.TodayUrl = ((ProModel *)self.dataArray[indexPath.row]).api_url;
-//    [self.navigationController pushViewController:today animated:YES];
-    
-//    AppDelegate *appdelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    [(UINavigationController *)appdelegate.window.rootViewController pushViewController:today animated:YES];
     
     [self presentViewController:today animated:YES completion:nil];
 
@@ -476,7 +480,6 @@
 #pragma mark - Gesture Interactions
 - (void)doubleFingerTap:(UITapGestureRecognizer *)pinchGestureRecognizer
 {
-    NSLog(@"tap 2 fingers");
     
     if ([pinchGestureRecognizer state] == UIGestureRecognizerStateBegan) {
         [UIView animateWithDuration:0.35 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{

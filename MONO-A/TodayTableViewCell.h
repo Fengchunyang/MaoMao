@@ -13,10 +13,12 @@
 
 @property (nonatomic , retain) UIImageView *topImageView;
 @property (nonatomic , retain) UIImageView *smallImageView;
+@property (nonatomic , retain) UILabel *authorLabel;
 @property (nonatomic , retain) UILabel *title;
 @property (nonatomic , retain) UILabel *leftLabel;
+@property (nonatomic , assign) CGFloat height;
 
 @property (nonatomic , retain) TodayModel *todayModel;
-
+- (void)HeightForCell;
 
 @end

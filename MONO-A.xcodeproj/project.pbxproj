@@ -54,6 +54,7 @@
 		34C4F8D41B3E5E7D00C6215F /* PicSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F8D31B3E5E7D00C6215F /* PicSecondViewController.m */; };
 		34C4F9D11B3EAD3F00C6215F /* RPSlidingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F9CE1B3EAD3F00C6215F /* RPSlidingMenuCell.m */; };
 		34C4F9D21B3EAD3F00C6215F /* RPSlidingMenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */; };
+		34C5A47E1B4276EB0053DA8D /* TodayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5A47D1B4276EB0053DA8D /* TodayDetailViewController.m */; };
 		34CD31041B40F571002E625A /* ThirdModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CD31031B40F571002E625A /* ThirdModelCell.m */; };
 		34CD31071B40F57B002E625A /* ThirdPageModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CD31061B40F57B002E625A /* ThirdPageModelCell.m */; };
 		34CD310A1B40F584002E625A /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CD31091B40F584002E625A /* DataModel.m */; };
@@ -177,6 +178,8 @@
 		34C4F9CE1B3EAD3F00C6215F /* RPSlidingMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSlidingMenuCell.m; sourceTree = "<group>"; };
 		34C4F9CF1B3EAD3F00C6215F /* RPSlidingMenuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSlidingMenuLayout.h; sourceTree = "<group>"; };
 		34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSlidingMenuLayout.m; sourceTree = "<group>"; };
+		34C5A47C1B4276EB0053DA8D /* TodayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayDetailViewController.h; sourceTree = "<group>"; };
+		34C5A47D1B4276EB0053DA8D /* TodayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDetailViewController.m; sourceTree = "<group>"; };
 		34CD31021B40F571002E625A /* ThirdModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdModelCell.h; sourceTree = "<group>"; };
 		34CD31031B40F571002E625A /* ThirdModelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdModelCell.m; sourceTree = "<group>"; };
 		34CD31051B40F57B002E625A /* ThirdPageModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdPageModelCell.h; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				34C43FC21B3BE10500A5D0DB /* ProgrammeViewController.m */,
 				34CD311A1B414A68002E625A /* TodayViewController.h */,
 				34CD311B1B414A68002E625A /* TodayViewController.m */,
+				34C5A47C1B4276EB0053DA8D /* TodayDetailViewController.h */,
+				34C5A47D1B4276EB0053DA8D /* TodayDetailViewController.m */,
 				34C43FC41B3BE11300A5D0DB /* MONOViewController.h */,
 				34C43FC51B3BE11300A5D0DB /* MONOViewController.m */,
 				34CD310B1B40F698002E625A /* MONONextViewController.h */,
@@ -636,6 +641,7 @@
 				34CD31101B40F70E002E625A /* MBProgressHUD.m in Sources */,
 				34CD31041B40F571002E625A /* ThirdModelCell.m in Sources */,
 				34C4F8D11B3E549D00C6215F /* PhotoModel.m in Sources */,
+				34C5A47E1B4276EB0053DA8D /* TodayDetailViewController.m in Sources */,
 				34C43FE31B3BEF0100A5D0DB /* PictorialVIew.m in Sources */,
 				34C43FF71B3C28F000A5D0DB /* TeaTableViewCell.m in Sources */,
 				34C4F84F1B3E3E8100C6215F /* UIView+WebCacheOperation.m in Sources */,

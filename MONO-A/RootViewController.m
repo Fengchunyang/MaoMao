@@ -160,7 +160,7 @@
     for(int i =0; i<controllers.count; i++){
         // Be sure we got s subclass of UIViewController
         if([controllers[i] isKindOfClass:UIViewController.class])
-            [views addObject:[(UIViewController*)controllers[i] view]];
+            [views addObject:(UIViewController*)controllers[i]];
     }
     return [self initWithNavBarItems:items
                     navBarBackground:background
@@ -222,6 +222,7 @@
     [self.scrollView setContentOffset:CGPointMake(xOffset, self.scrollView.contentOffset.y) animated:animated];
 }
 
+#pragma mark 把控制器的view作为字典的value  不走
 -(void)addViewControllers:(UIViewController *) controller needToRefresh:(BOOL) refresh{
     int tag = (int)self.viewControllers.count;
     // Try to get a navigation item
@@ -238,7 +239,7 @@
     [self addNavigationItem:v
                         tag:tag];
     // Save the controller
-    [self.viewControllers setObject:controller.view
+    [self.viewControllers setObject:controller
                              forKey:@(tag)];
     // Do we need to refresh the UI ?
     if(refresh)
@@ -314,6 +315,7 @@
     [_subviews addObject:v];
 }
 
+#pragma mark - 添加item
 -(void)setupPagingProcess{
     // Make our ScrollView
     CGRect frame                                   = CGRectMake(0, 0, SCREEN_SIZE.width, self.view.frame.size.height);
@@ -324,7 +326,7 @@
     self.scrollView.showsVerticalScrollIndicator   = NO;
     self.scrollView.delegate                       = self;
     self.scrollView.bounces                        = NO;
-    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, -80, 0)];
+    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:self.scrollView];
     
     // Adds all views
@@ -344,12 +346,14 @@
 }
 
 // Add all views
+#pragma mark - Add all views
 -(void)addControllers{
     if(self.viewControllers
        && self.viewControllers.count > 0){
         float width                 = SCREEN_SIZE.width * self.viewControllers.count;
         float height                = CGRectGetHeight(self.view.frame) - CGRectGetHeight(self.navigationBarView.frame);
         self.scrollView.contentSize = (CGSize){width, height};
+        
         
         // 字典没有排序
         
@@ -367,9 +371,12 @@
         
         
         for (int i = 0; i < arr.count; i++) {
-            UIView *v = [self.viewControllers objectForKey:arr[i]];
-            v.frame   = (CGRect){SCREEN_SIZE.width * i, 0, SCREEN_SIZE.width, CGRectGetHeight(self.view.frame)};
-            [self.scrollView addSubview:v];
+            UIViewController *v = [self.viewControllers objectForKey:arr[i]];
+            v.view.frame   = (CGRect){SCREEN_SIZE.width * i, 0, SCREEN_SIZE.width, CGRectGetHeight(self.view.frame)};
+            [self.scrollView addSubview:v.view];
+            [self addChildViewController:v];
+            [v didMoveToParentViewController:self];
+              
         }
         
         
@@ -380,8 +387,8 @@
 -(void)tapOnHeader:(UITapGestureRecognizer *)recognizer{
     if(self.isUserInteraction){
         // Get the wanted view
-        UIView *view = [self.viewControllers objectForKey:@(recognizer.view.tag)];
-        [self.scrollView scrollRectToVisible:view.frame
+        UIViewController *view = [self.viewControllers objectForKey:@(recognizer.view.tag)];
+        [self.scrollView scrollRectToVisible:view.view.frame
                                     animated:YES];
     }
 }
@@ -468,11 +475,14 @@ NSString * const SLPagingViewPrefixIdentifier = @"sl_";
 
 @implementation SLPagingViewControllerSegueSetController
 
+#pragma mark - addViewControllers
 -(void)perform{
     // Get SLPagingViewController (sourceViewController)
     RootViewController *src = self.sourceViewController;
     // Add it to the subviews
     if(self.destinationViewController)
+        
+        
         [src addViewControllers:self.destinationViewController
                   needToRefresh:NO];
 }
