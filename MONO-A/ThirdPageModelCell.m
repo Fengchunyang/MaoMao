@@ -73,7 +73,7 @@
     //改变cintentView的frame
     if (self.label2.frame.size.height > (self.imaView.frame.size.height - 2 * kSpace - self.label1.frame.size.height)) {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.label1.frame.size.height + self.label2.frame.size.height + 5 * kSpace);
-        NSLog(@"%f" , self.frame.size.height);
+
         
     }else
     {

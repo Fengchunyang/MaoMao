@@ -125,22 +125,11 @@
 
     UIImage *image = [UIImage imageNamed:@"111"];
    
-    self.myButton = [Function createButtonWithFrame:CGRectMake(kScreenBounds.size.width - 120, kScreenBounds.size.height - 120, 70, 70) title:nil];
-//    UIEdgeInsets inset = UIEdgeInsetsMake(0, 8, 0, 0);
-//    image = [image resizableImageWithCapInsets:inset resizingMode:UIImageResizingModeStretch];
+    self.myButton = [Function createButtonWithFrame:CGRectMake(kScreenBounds.size.width - 80, kScreenBounds.size.height - 70, 50, 50) title:nil];
     
     [self.myButton setBackgroundImage:image forState:UIControlStateNormal];
-    
-    //[self.myButton setImage:image forState:UIControlStateNormal];
-    
-//    self.myButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//    self.myButton.adjustsImageWhenDisabled = YES;
-    //self.myButton.contentEdgeInsets = UIEdgeInsetsMake(20, 20, 0, 0);
-    //self.myButton.imageEdgeInsets = UIEdgeInsetsMake(20, 10, 0, 0);
-//    self.myButton.layer.masksToBounds = YES;
-//    self.myButton.layer.cornerRadius = 35;
-//    self.myButton.backgroundColor = [UIColor clearColor];
-    
+    self.myButton.layer.cornerRadius = 25;
+    self.myButton.layer.masksToBounds = YES;
     [self.myButton addTarget:self action:@selector(teaAction) forControlEvents:UIControlEventTouchUpInside];
     
     

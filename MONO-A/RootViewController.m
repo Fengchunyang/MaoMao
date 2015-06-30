@@ -21,6 +21,7 @@
 @property (nonatomic) BOOL needToShowPageControl;
 @property (nonatomic) BOOL isUserInteraction;
 @property (nonatomic) NSInteger indexSelected;
+@property (nonatomic , assign) CGFloat scrollViewOffsize;
 
 @property (nonatomic , retain) UIView *lineView;
 @property (nonatomic , retain) UIView *view1;
@@ -180,8 +181,12 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.scrollViewOffsize = self.indexSelected*375;
     [self setCurrentIndex:self.indexSelected
                  animated:NO];
+    
+   
     [self prefersStatusBarHidden];
 }
 
@@ -388,9 +393,25 @@
     if(self.isUserInteraction){
         // Get the wanted view
         UIViewController *view = [self.viewControllers objectForKey:@(recognizer.view.tag)];
+        NSInteger a = (NSInteger)self.scrollViewOffsize/375;
+        UIView *view1 =  self.subviews[a];
+        UIView *view2 = self.subviews[recognizer.view.tag];
+        if (![view2 isEqual:view1]) {
+         UIView *line1 =  [[view1 subviews]firstObject];
+            line1.hidden = YES;
+            UIView *line2 = [[view2 subviews]firstObject];
+            line2.hidden = NO;
+        }
         [self.scrollView scrollRectToVisible:view.view.frame
                                     animated:YES];
+        
+        
+        self.scrollViewOffsize = recognizer.view.tag*375;
+        
     }
+    
+    
+    
 }
 
 -(CGSize) getLabelSize:(UILabel *)lbl{
@@ -448,6 +469,8 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self sendNewIndex:scrollView];
     
+    self.scrollViewOffsize = scrollView.contentOffset.x;
+
     CGFloat a = scrollView.contentOffset.x/375;
     UIView *v = self.subviews[(NSInteger)a];
     UIView *line = [[v subviews]firstObject];

@@ -55,7 +55,6 @@
 {
     NSData *data = (NSData *)info;
     NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",str);
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -55,6 +55,8 @@
 		34C4F9D11B3EAD3F00C6215F /* RPSlidingMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F9CE1B3EAD3F00C6215F /* RPSlidingMenuCell.m */; };
 		34C4F9D21B3EAD3F00C6215F /* RPSlidingMenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */; };
 		34C5A47E1B4276EB0053DA8D /* TodayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5A47D1B4276EB0053DA8D /* TodayDetailViewController.m */; };
+		34C5A5471B42971B0053DA8D /* MagzaineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5A5461B42971B0053DA8D /* MagzaineTableViewCell.m */; };
+		34C5A54A1B4297340053DA8D /* MagazineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5A5491B4297340053DA8D /* MagazineModel.m */; };
 		34CD31041B40F571002E625A /* ThirdModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CD31031B40F571002E625A /* ThirdModelCell.m */; };
 		34CD31071B40F57B002E625A /* ThirdPageModelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CD31061B40F57B002E625A /* ThirdPageModelCell.m */; };
 		34CD310A1B40F584002E625A /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CD31091B40F584002E625A /* DataModel.m */; };
@@ -180,6 +182,10 @@
 		34C4F9D01B3EAD3F00C6215F /* RPSlidingMenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSlidingMenuLayout.m; sourceTree = "<group>"; };
 		34C5A47C1B4276EB0053DA8D /* TodayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayDetailViewController.h; sourceTree = "<group>"; };
 		34C5A47D1B4276EB0053DA8D /* TodayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDetailViewController.m; sourceTree = "<group>"; };
+		34C5A5451B42971B0053DA8D /* MagzaineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagzaineTableViewCell.h; sourceTree = "<group>"; };
+		34C5A5461B42971B0053DA8D /* MagzaineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagzaineTableViewCell.m; sourceTree = "<group>"; };
+		34C5A5481B4297340053DA8D /* MagazineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagazineModel.h; sourceTree = "<group>"; };
+		34C5A5491B4297340053DA8D /* MagazineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagazineModel.m; sourceTree = "<group>"; };
 		34CD31021B40F571002E625A /* ThirdModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdModelCell.h; sourceTree = "<group>"; };
 		34CD31031B40F571002E625A /* ThirdModelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdModelCell.m; sourceTree = "<group>"; };
 		34CD31051B40F57B002E625A /* ThirdPageModelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdPageModelCell.h; sourceTree = "<group>"; };
@@ -339,6 +345,8 @@
 				34C440091B3C315200A5D0DB /* TeaModel.m */,
 				34C4F8CC1B3E523500C6215F /* PictorialModel.h */,
 				34C4F8CD1B3E523500C6215F /* PictorialModel.m */,
+				34C5A5481B4297340053DA8D /* MagazineModel.h */,
+				34C5A5491B4297340053DA8D /* MagazineModel.m */,
 				34C4F8CF1B3E549D00C6215F /* PhotoModel.h */,
 				34C4F8D01B3E549D00C6215F /* PhotoModel.m */,
 			);
@@ -525,6 +533,8 @@
 				34C43FF61B3C28F000A5D0DB /* TeaTableViewCell.m */,
 				34CD311D1B414C5F002E625A /* TodayTableViewCell.h */,
 				34CD311E1B414C5F002E625A /* TodayTableViewCell.m */,
+				34C5A5451B42971B0053DA8D /* MagzaineTableViewCell.h */,
+				34C5A5461B42971B0053DA8D /* MagzaineTableViewCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -649,6 +659,7 @@
 				34C43F981B3BD7FE00A5D0DB /* AppDelegate.m in Sources */,
 				34C4F8431B3E3E8100C6215F /* SDWebImageCompat.m in Sources */,
 				34C43FE61B3BEF1300A5D0DB /* CreatorView.m in Sources */,
+				34C5A5471B42971B0053DA8D /* MagzaineTableViewCell.m in Sources */,
 				34CD310A1B40F584002E625A /* DataModel.m in Sources */,
 				34CD31221B415F56002E625A /* TodayModel.m in Sources */,
 				34C4F8441B3E3E8100C6215F /* SDWebImageDecoder.m in Sources */,
@@ -666,6 +677,7 @@
 				34CD31071B40F57B002E625A /* ThirdPageModelCell.m in Sources */,
 				34CD310D1B40F698002E625A /* MONONextViewController.m in Sources */,
 				34C4F8D41B3E5E7D00C6215F /* PicSecondViewController.m in Sources */,
+				34C5A54A1B4297340053DA8D /* MagazineModel.m in Sources */,
 				34C43FEF1B3BF85900A5D0DB /* TeaViewController.m in Sources */,
 				34C4F84B1B3E3E8100C6215F /* UIImage+MultiFormat.m in Sources */,
 				34C43FD21B3BE1E100A5D0DB /* PastViewController.m in Sources */,

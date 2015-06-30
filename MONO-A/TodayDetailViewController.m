@@ -25,7 +25,7 @@
     self.web = [[UIWebView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:_web];
     
-    
+    NSLog(@"%@",self.todayDatailURL);
     self.backBtn = [UIButton buttonWithType:1];
     self.backBtn.backgroundColor = [UIColor clearColor];
     self.backBtn.frame = CGRectMake(30, self.view.frame.size.height - 70, 50, 50);

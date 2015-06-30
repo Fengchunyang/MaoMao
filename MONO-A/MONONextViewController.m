@@ -66,7 +66,7 @@
         [_HUD show:YES];
         NSURL *reqUrl = [NSURL URLWithString:self.link];
         NSURLRequest *request = [[NSURLRequest alloc]initWithURL:reqUrl];
-        NSLog(@"request = %@" , request);
+
         [self.webView1 loadRequest:request];
         [_HUD hide:YES];
         [_HUD release];

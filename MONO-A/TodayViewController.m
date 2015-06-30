@@ -154,9 +154,11 @@
 //            UIImageView *imageView = [[UIImageView alloc]init];
 //            [imageView sd_setImageWithURL:[NSURL URLWithString:str1] placeholderImage:[UIImage imageNamed:@"test"]];
 //            [self.images addObject:imageView];
-//            
+        
+//            UIImage *image = (UIImage *)[[SDWebImageManager sharedManager]downloadImageWithURL:[NSURL URLWithString:str1] options:SDWebImageDelayPlaceholder progress:nil completed:nil];
+            
 //        }
-//        
+        
 //        [self changeSlide:indexPath];
 //        
 //        NSTimer *time = [NSTimer timerWithTimeInterval:4 target:self selector:@selector(changeSlide:) userInfo:nil repeats:YES];
@@ -168,6 +170,8 @@
         
         
     }else{
+    
+        
         [cell.topImageView sd_setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:[UIImage imageNamed:@"test"]];
     }
     
