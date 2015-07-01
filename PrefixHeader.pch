@@ -49,3 +49,33 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #endif
+
+
+
+
+#define kSpace 5
+#import "MBProgressHUD.h"
+#import "ThirdPageModelCell.h"
+#import "ThirdModelCell.h"
+#import "DataModel.h"
+#import "UIImageView+WebCache.h"
+#import "WeiJueDataModel.h"
+#import "WeiJueModelCell.h"
+#import "NetWorkEngine.h"
+#import "ViceChinaModelCell.h"
+#import "JianDanDataModel.h"
+
+#import "HuaBaoDataModel.h"
+
+#define kViceChina @"http://www.vice.com/en_us/api/getvicetoday/0?name=homeFeed"
+
+#define kWeiJueDaShi @"http://app.legendzest.cn/index.php?g=api24&m=cookbook&a=getlist&version=2.0&device=02F65CAB-95EB-4F0E-AEA9-D88CCF16C12D&d_type=2&safe_code=safe_code_shangweiji&uid=%28null%29&uuid=&igetui_cid=0&page=1&typeid=0&ord=1&title="
+
+
+#define kLiangcang @"http://iliangcang.com:8200/topic/list?app_key=iphone&build=143&osVersion=82&v=2.2.0"
+#define kJiandan @"http://jandan.net/?oxwlxojflwblxbsapi=jandan.get_video_comments?oxwlxojflwblxbsapi=jandan.get_video_comments"
+#define kHuabao @"http://iphone.myzaker.com/zaker/daily_hot.php?app_id_4=310000"
+#define kWangyi @"http://iphone.myzaker.com/zaker/news.php?app_id=9"
+#define kYingxiang @"http://iphone.myzaker.com/zaker/news.php?app_id=2&act=list"
+#define kDuanzi @"http://c.3g.163.com/recommend/getChanListNews?passport=&devId=861135026994402&size=20&channel=duanzi"
+
