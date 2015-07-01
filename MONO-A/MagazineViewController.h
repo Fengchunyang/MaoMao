@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MagazineView.h"
 
-@interface MagazineViewController : UIViewController
 
-@property (nonatomic , retain) MagazineView *magazineView;
+@interface MagazineViewController : UIViewController<NetWorkEngineDelegate>
+
+@property(nonatomic,retain)NSMutableArray * modelArray;
+@property(nonatomic,assign)NSInteger num;
+
 
 @end

@@ -119,7 +119,9 @@
     model =  self.dataArray[indexPath.row];
     
     
-    cell.textLabel.text = model.title;
+        
+        cell.textLabel.text = model.title;
+    
     cell.detailTextLabel.text = model.descrip;
     [cell.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:model.photo.url] placeholderImage:[UIImage imageNamed:@"test.jpg"]];
     

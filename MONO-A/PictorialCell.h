@@ -1,15 +1,14 @@
 //
-//  MagzaineTableViewCell.h
-//  MONO-A
+//  PictorialCell.h
+//  MONO-B
 //
-//  Created by lanouhn on 15/6/30.
-//  Copyright (c) 2015年 lanouhn. All rights reserved.
+//  Created by 张浩杰 on 15-6-29.
+//  Copyright (c) 2015年 张浩杰. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MagzaineTableViewCell : UITableViewCell
-
+@interface PictorialCell : UITableViewCell
 @property(nonatomic,retain)UIImageView * BIGimage;
 @property(nonatomic,retain)UILabel * conLabel;
 @property(nonatomic,retain)UILabel * titleLabel;
@@ -18,5 +17,6 @@
 @property(nonatomic,retain)UILabel * FromLabel;
 @property(nonatomic,retain)UILabel * aLabel;
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
 
 @end

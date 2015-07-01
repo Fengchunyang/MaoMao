@@ -1,22 +1,24 @@
 //
-//  PictorialModel.m
+//  Pictorial2Model.m
 //  MONO-A
 //
-//  Created by lanouhn on 15/6/27.
+//  Created by lanouhn on 15/7/1.
 //  Copyright (c) 2015年 lanouhn. All rights reserved.
 //
+#import "Pictorial2Model.h"
 
-#import "PictorialModel.h"
 
-
-@implementation PictorialModel
+@implementation PictorialModel : NSObject 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic
 {
     self = [super init];
     if (self) {
         if (![dic isKindOfClass:[NSNull class]]) {
-            self.title = dic[@"title"];
+            if (![[dic objectForKey:@"title"] isKindOfClass:[NSNull class]]) {
+                
+                self.title = dic[@"title"];
+            }
             self.descrip = dic[@"description"];
             self.photo = [[PhotoModel alloc]initWithDictionary:dic[@"cover"]];
             self.access_url = dic[@"access_url"];

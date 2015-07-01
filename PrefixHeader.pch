@@ -64,9 +64,8 @@
 #import "NetWorkEngine.h"
 #import "ViceChinaModelCell.h"
 #import "JianDanDataModel.h"
-
 #import "HuaBaoDataModel.h"
-
+#import "PictorialModel.h"
 #define kViceChina @"http://www.vice.com/en_us/api/getvicetoday/0?name=homeFeed"
 
 #define kWeiJueDaShi @"http://app.legendzest.cn/index.php?g=api24&m=cookbook&a=getlist&version=2.0&device=02F65CAB-95EB-4F0E-AEA9-D88CCF16C12D&d_type=2&safe_code=safe_code_shangweiji&uid=%28null%29&uuid=&igetui_cid=0&page=1&typeid=0&ord=1&title="

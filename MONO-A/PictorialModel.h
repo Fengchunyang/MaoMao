@@ -1,8 +1,8 @@
 //
-//  PictorialModel.h
+//  Pictorial2Model.h
 //  MONO-A
 //
-//  Created by lanouhn on 15/6/27.
+//  Created by lanouhn on 15/7/1.
 //  Copyright (c) 2015年 lanouhn. All rights reserved.
 //
 

@@ -1,15 +1,14 @@
 //
-//  MagazineModel.h
-//  MONO-A
+//  PictorialModel.h
+//  MONO-B
 //
-//  Created by lanouhn on 15/6/30.
-//  Copyright (c) 2015年 lanouhn. All rights reserved.
+//  Created by 张浩杰 on 15-6-29.
+//  Copyright (c) 2015年 张浩杰. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface MagazineModel : NSObject
-
+@interface Pictorial2Model : NSObject
 -(id)initWithDictionary:(NSDictionary *)dic;
 @property(nonatomic,retain)NSString * BIGimage;
 @property(nonatomic,retain)NSString * conStr;
