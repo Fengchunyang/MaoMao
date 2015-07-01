@@ -46,7 +46,31 @@
     [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    //刷新的第二页;
+    static NSInteger count = 2;
+    //下拉刷新
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadnewData)];
+    //上拉加载更多
+    [self.tableView addLegendFooterWithRefreshingBlock:^{
+        [self setNum:count++];
+        [self getDataFromURL];
+        [self.tableView reloadData];
+    }];
+    
+    [self.tableView release];
+    
 }
+//下拉刷新
+-(void)loadnewData
+{
+    [self.arr removeAllObjects];
+    [self setNum:1];
+    [self getDataFromURL];
+    
+    [self.tableView reloadData];
+    
+}
+
 - (void)backBtnAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -112,6 +136,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
+ 
 */
 
 - (void)getDataFromURL

@@ -10,4 +10,5 @@
 
 @interface ZaoWuZhu2ViewController : UIViewController
 @property (nonatomic , retain)UITableView *tableView;
+@property (nonatomic , assign)NSInteger num;
 @end
