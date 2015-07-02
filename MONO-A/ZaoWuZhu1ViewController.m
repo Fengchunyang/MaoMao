@@ -14,6 +14,7 @@
 @property (nonatomic , retain)NSMutableArray *arr;
 @property (nonatomic , retain)NSMutableDictionary *bigDic;
 @property (nonatomic , retain)UIButton *backBtn;
+@property (nonatomic , assign)NSInteger num;
 @end
 
 @implementation ZaoWuZhu1ViewController
@@ -23,13 +24,13 @@
     // Do any additional setup after loading the view.
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview: self.tableView];
-    [self.tableView release];
+
     self.arr = [NSMutableArray array];
     self.bigDic = [NSMutableDictionary dictionary];
-    
+    self.num = 1;
+    [self getDataFromUrl];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self getDataFromUrl:kViceChina];
     self.backBtn = [UIButton buttonWithType:1];
     self.backBtn.backgroundColor = [UIColor clearColor];
     self.backBtn.frame = CGRectMake(30, self.view.frame.size.height - 70, 50, 50);
@@ -38,7 +39,43 @@
     [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //刷新的第二页;
+    static NSInteger count = 2;
+    
+    // Do any additional setup after loading the view.
+    //下拉刷新
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadnewData)];
+    //上拉加载更多
+    [self.tableView addLegendFooterWithRefreshingBlock:^{
+        [self setNum:count++];
+        NSLog(@"%ld" , _num);
+        [self getDataFromUrl];
+        
+        [self.tableView reloadData];
+        
+    }];
+    
+    [self.tableView release];
+    
 }
+//下拉刷新
+-(void)loadnewData
+{
+    [self.arr removeAllObjects];
+    [self setNum:1];
+    [self getDataFromUrl];
+    
+    [self.tableView reloadData];
+    
+}
+- (void)stopReloadData
+{
+    [self.tableView.header endRefreshing];
+    [self.tableView.footer endRefreshing];
+    
+}
+
 - (void)backBtnAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -90,9 +127,9 @@
 {
     return 1;
 }
-- (void)getDataFromUrl:(NSString *)url
-{
-    NSURL *Url = [NSURL URLWithString:url];
+- (void)getDataFromUrl
+{ NSString *str = [NSString stringWithFormat:@"http://www.vice.com/en_us/api/getvicetoday/%ld?name=homeFeed" , _num];
+    NSURL *Url = [NSURL URLWithString:str];
    
     NetWorkEngine *engine = [NetWorkEngine engineWithURL:Url parameters:nil deleagte:self];
     [engine start];
@@ -103,9 +140,11 @@
     if(data){
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     self.bigDic = [dic objectForKey:@"data"];
-    self.arr = [self.bigDic objectForKey:@"items"];
+    NSArray * arr = [self.bigDic objectForKey:@"items"];
+        [self.arr addObjectsFromArray:arr];
 
     [self.tableView reloadData];
+        [self stopReloadData];
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

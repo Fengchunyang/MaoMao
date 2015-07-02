@@ -13,6 +13,8 @@
 @property (nonatomic , retain)NSMutableDictionary *bigDic;
 @property (nonatomic , retain)UITableView *tableView;
 @property (nonatomic , retain)UIButton *backBtn;
+@property (nonatomic , assign)NSInteger num;
+
 @end
 
 @implementation LiangCangViewController
@@ -22,7 +24,7 @@
     // Do any additional setup after loading the view.
    self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:_tableView];
-    [_tableView release];
+    
     self.arr = [NSMutableArray array];
     self.bigDic = [NSMutableDictionary dictionary];
     self.tableView.dataSource = self;
@@ -36,6 +38,39 @@
     [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    //刷新的第二页;
+    static NSInteger count = 2;
+    //下拉刷新
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadnewData)];
+        //上拉加载更多
+        [self.tableView addLegendFooterWithRefreshingBlock:^{
+            [self setNum:count++];
+            NSLog(@"%ld" , _num);
+            [self getDataFromUrl];
+    
+            [self.tableView reloadData];
+    
+        }];
+    
+
+    [self.tableView release];
+    
+}
+//下拉刷新
+-(void)loadnewData
+{
+    [self.arr removeAllObjects];
+    [self setNum:1];
+    [self getDataFromUrl];
+    
+    [self.tableView reloadData];
+    [self stopReloadData];
+}
+- (void)stopReloadData
+{
+    [self.tableView.header endRefreshing];
+    [self.tableView.footer endRefreshing];
+    
 }
 - (void)backBtnAction:(UIButton *)sender
 {
@@ -57,10 +92,11 @@
     
     NSDictionary * Dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     self.bigDic = [Dic objectForKey:@"data"];
-
-    self.arr = [self.bigDic objectForKey:@"items"];
+        NSArray *arr =[self.bigDic objectForKey:@"items"];
+        [self.arr addObjectsFromArray:arr];;
 
     [self.tableView reloadData];
+        [self stopReloadData];
     }
 }
 - (void)didReceiveMemoryWarning {

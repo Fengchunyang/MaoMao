@@ -11,7 +11,7 @@
 
 @interface MONOViewController ()<NetWorkEngineDelegate>
 @property (nonatomic , assign)NSString* Hot;
-
+@property (nonatomic , assign)NSInteger num;
 @end
 
 @implementation MONOViewController
@@ -30,19 +30,59 @@
     [self.view addSubview: _tableView];
     _tableView.backgroundColor = [UIColor blackColor];
     
-    [_tableView release];
+   
     self.bigDic = [NSDictionary dictionary];
     
     
     self.arr = [NSMutableArray array];
-    
-    
+    self.num = 1;
+    [self getDataFromUrl];
     
     //设置代理
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    NSString *UrlStr = @"http://mmmono.com/api/category/all?page=1";
+    
+    
+    
+    //刷新的第二页;
+    static NSInteger count = 2;
+    
+    // Do any additional setup after loading the view.
+    //下拉刷新
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadnewData)];
+    //上拉加载更多
+    [self.tableView addLegendFooterWithRefreshingBlock:^{
+        [self setNum:count++];
+        NSLog(@"%ld" , _num);
+        [self getDataFromUrl];
+
+        [self.tableView reloadData];
+
+    }];
+
+    [self.tableView release];
+    
+}
+//下拉刷新
+-(void)loadnewData
+{
+    [self.arr removeAllObjects];
+    [self setNum:1];
+    [self getDataFromUrl];
+    
+    [self.tableView reloadData];
+
+}
+- (void)stopReloadData
+{
+    [self.tableView.header endRefreshing];
+    [self.tableView.footer endRefreshing];
+    
+}
+- (void)getDataFromUrl
+{
+    NSString *UrlStr =[NSString stringWithFormat:@"http://mmmono.com/api/category/all?page=%ld" , _num ] ;
     //创建URL对象
     NSURL *url = [NSURL URLWithString:UrlStr];
     
@@ -50,12 +90,7 @@
     
     [net start];
     
-    
-    
-    
 
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)netWorkDidFinishLoading:(NetWorkEngine *)engine withInfo:(id)info
@@ -67,11 +102,13 @@
         self.bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
         //字典里的大数组
-        self.arr = [self.bigDic objectForKey:@"items"];
+        NSArray *arr = [self.bigDic objectForKey:@"items"];
+        [self.arr addObjectsFromArray:arr];
     }
    
     
     [self.tableView reloadData];
+    [self stopReloadData];
     
 }
 

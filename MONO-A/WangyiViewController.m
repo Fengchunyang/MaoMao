@@ -13,6 +13,7 @@
 @property (nonatomic , retain)NSMutableArray *arr;
 @property (nonatomic , retain)NSMutableDictionary *bigDic;
 @property (nonatomic , retain)UIButton *backBtn;
+@property (nonatomic , assign)NSInteger num;
 @end
 
 @implementation WangyiViewController
@@ -37,7 +38,27 @@
     [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    //下拉刷新
+    [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadnewData)];
+    [self.tableView release];
+    
 }
+//下拉刷新
+-(void)loadnewData
+{
+    [self.arr removeAllObjects];
+    [self setNum:1];
+    [self getDataFromUrl];
+    
+    [self.tableView reloadData];
+    [self stopReloadData];
+}
+- (void)stopReloadData
+{
+    [self.tableView.header endRefreshing];
+    
+}
+
 - (void)backBtnAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];

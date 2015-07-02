@@ -13,6 +13,7 @@
 @property(nonatomic , retain)NSMutableArray *arr;
 @property (nonatomic , retain)NSMutableDictionary *bigDic;
 @property (nonatomic , retain)UIButton *backBtn;
+
 @end
 
 @implementation ZaoWuZhu2ViewController
@@ -27,7 +28,7 @@
     [self.tableView release];
     self.arr = [NSMutableArray array];
     self.bigDic = [NSMutableDictionary dictionary];
-    
+    self.num = 1;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -46,16 +47,22 @@
     [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     //刷新的第二页;
-    static NSInteger count = 2;
+//    static NSInteger count = 2;
     //下拉刷新
     [self.tableView addLegendHeaderWithRefreshingTarget:self refreshingAction:@selector(loadnewData)];
-    //上拉加载更多
-    [self.tableView addLegendFooterWithRefreshingBlock:^{
-        [self setNum:count++];
-        [self getDataFromURL];
-        [self.tableView reloadData];
-    }];
+    
+    
+//    //上拉加载更多
+//    [self.tableView addLegendFooterWithRefreshingBlock:^{
+//        [self setNum:count++];
+//        NSLog(@"%ld" , _num);
+//        [self getDataFromURL];
+//        
+//        [self.tableView reloadData];
+//        
+//    }];
     
     [self.tableView release];
     
@@ -70,6 +77,13 @@
     [self.tableView reloadData];
     
 }
+- (void)stopReloadData
+{
+    [self.tableView.header endRefreshing];
+    [self.tableView.footer endRefreshing];
+    
+}
+
 
 - (void)backBtnAction:(UIButton *)sender
 {
@@ -142,8 +156,8 @@
 - (void)getDataFromURL
 {
 
-    
-    NetWorkEngine *engine = [NetWorkEngine engineWithURL:[NSURL URLWithString:kWeiJueDaShi] parameters:nil deleagte:self];
+    NSString *str = [NSString stringWithFormat:@"http://app.legendzest.cn/index.php?g=api24&m=cookbook&a=getlist&version=2.0&device=02F65CAB-95EB-4F0E-AEA9-D88CCF16C12D&d_type=2&safe_code=safe_code_shangweiji&uid=nulluid=&igetui_cid=0&page=1&typeid=&ord=1&title="];
+    NetWorkEngine *engine = [NetWorkEngine engineWithURL:[NSURL URLWithString:str] parameters:nil deleagte:self];
     [engine start];
 
 }
@@ -154,10 +168,11 @@
         
     
     self.bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    self.arr = [self.bigDic objectForKey:@"res"];
-//    NSLog(@"******%@" , self.arr);
+    NSArray * arr = [self.bigDic objectForKey:@"res"];
+        [self.arr addObjectsFromArray:arr];
+
     [self.tableView reloadData];
-    
+        [self stopReloadData];
 }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
