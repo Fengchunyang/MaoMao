@@ -511,6 +511,38 @@ NSString * const SLPagingViewPrefixIdentifier = @"sl_";
 }
 
 
+/*
+ 
+ @property (nonatomic, strong) UIScrollView *scrollView;
+ @property (nonatomic, strong) UIPageControl *pageControl;
+ @property (nonatomic, strong) UIView *navigationBarView;
+ @property (nonatomic, strong) NSMutableArray *subviews;
+ @property (nonatomic) BOOL needToShowPageControl;
+ @property (nonatomic) BOOL isUserInteraction;
+ @property (nonatomic) NSInteger indexSelected;
+ @property (nonatomic , assign) CGFloat scrollViewOffsize;
+ 
+ @property (nonatomic , retain) UIView *lineView;
+ @property (nonatomic , retain) UIView *view1;
+
+ 
+ @property (nonatomic, copy) SLPagingViewMovingRedefine pagingViewMovingRedefine;
+ 
+ @property (nonatomic, copy) SLPagingViewMoving pagingViewMoving;
+ 
+ @property (nonatomic, copy) SLPagingViewDidChanged didChangedPage;
+ 
+ @property (nonatomic, strong) NSMutableDictionary *viewControllers;
+ 
+ @property (nonatomic, strong) UIColor *tintPageControlColor;
+ 
+ @property (nonatomic, strong) UIColor *currentPageControlColor;
+ 
+ */
+
+
+
+
 
 
 @end

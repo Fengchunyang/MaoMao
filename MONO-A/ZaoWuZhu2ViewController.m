@@ -180,6 +180,7 @@
     WeiJueDaShiViewController *weijue = [[WeiJueDaShiViewController alloc]init];
     weijue.idStr = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"id"];
     [self  presentViewController:weijue animated:YES completion:nil];
+    [weijue release];
 }
 
 - (void)dealloc

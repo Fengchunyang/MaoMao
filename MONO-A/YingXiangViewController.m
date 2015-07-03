@@ -7,7 +7,7 @@
 //
 
 #import "YingXiangViewController.h"
-#import "YingXiang1ViewController.h"
+
 @interface YingXiangViewController ()<UITableViewDataSource , UITableViewDelegate , NetWorkEngineDelegate>
 @property (nonatomic ,retain)UITableView *tableView;
 @property (nonatomic , retain)NSMutableArray *arr;
@@ -116,9 +116,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YingXiang1ViewController *yingxiang1 = [[YingXiang1ViewController alloc]init];
+    MONONextViewController *yingxiang1 = [[MONONextViewController alloc]init];
     yingxiang1.link = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"weburl"];
     [self  presentViewController:yingxiang1 animated:YES completion:nil];
+    [yingxiang1 release];
     
 }
 - (void)didReceiveMemoryWarning {

@@ -45,7 +45,7 @@
         //上拉加载更多
         [self.tableView addLegendFooterWithRefreshingBlock:^{
             [self setNum:count++];
-            NSLog(@"%ld" , _num);
+
             [self getDataFromUrl];
     
             [self.tableView reloadData];
@@ -140,9 +140,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LiangCang1ViewController *liangcang1 = [[LiangCang1ViewController alloc]init];
+    MONONextViewController *liangcang1 = [[MONONextViewController alloc]init];
     liangcang1.link = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"access_url"];
     [self  presentViewController:liangcang1 animated:YES completion:nil];
+    [liangcang1 release];
     
 }
 /*

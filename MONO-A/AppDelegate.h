@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <MediaPlayer/MediaPlayer.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    MPMoviePlayerViewController *player;
+}
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic , retain) UIButton *myButton;

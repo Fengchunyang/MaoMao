@@ -57,6 +57,8 @@
     return [temps componentsJoinedByString:@"&"];
 }
 
+
+
 #pragma mark - 设定参数列表
 - (void)setParams1:(NSDictionary *)params
 {

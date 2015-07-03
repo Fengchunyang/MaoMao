@@ -54,7 +54,7 @@
     //上拉加载更多
     [self.tableView addLegendFooterWithRefreshingBlock:^{
         [self setNum:count++];
-        NSLog(@"%ld" , _num);
+
         [self getDataFromUrl];
 
         [self.tableView reloadData];
@@ -102,8 +102,10 @@
         self.bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         
         //字典里的大数组
-        NSArray *arr = [self.bigDic objectForKey:@"items"];
+        NSMutableArray *arr = [self.bigDic objectForKey:@"items"];
         [self.arr addObjectsFromArray:arr];
+
+        
     }
    
     
@@ -127,10 +129,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MONONextViewController *monoNext = [[MONONextViewController alloc]init];
-    monoNext.indexPath = indexPath;
-    monoNext.dic =[NSMutableDictionary dictionaryWithDictionary:self.bigDic] ;
+
+    monoNext.link = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"link"];
+
     [self presentViewController:monoNext animated:YES completion:nil];
-//    [self.navigationController pushViewController:monoNext animated:YES];
+    [monoNext release];
     
 }
 

@@ -17,7 +17,7 @@
         if (![dic isKindOfClass:[NSNull class]]) {
             self.title = dic[@"title"];
             self.auther_name = dic[@"auther_name"];
-            self.full_url = dic[@"full_url"];
+            self.full_url = dic[@"weburl"];
             
             self.imageArray = [NSMutableArray array];
             

@@ -108,4 +108,13 @@
     return YES;
 }
 
+- (void)dealloc
+{
+    [_teaView release];
+    [_tableView release];
+    _arr = nil;
+
+    [super dealloc];
+}
+
 @end

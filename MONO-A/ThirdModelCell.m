@@ -57,7 +57,7 @@
 - (void)calculateHeight
 {
     NSString *contentText = self.label2.text;
-//    NSLog(@"%@" , contentText);
+
     CGSize maxSize = CGSizeMake(self.label2.frame.size.width, 1000);
     
     

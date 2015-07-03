@@ -69,7 +69,8 @@
     
     [self.view addSubview:self.collectView];
     
-    
+    [_collectView release];
+    [layout release];
     
     // Do any additional setup after loading the view.
 }
@@ -116,7 +117,7 @@
     RPSlidingMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kIdent forIndexPath:indexPath];
     PictorialModel *model = [[PictorialModel alloc]init];
     
-    model =  self.dataArray[indexPath.row];
+    model =  [self.dataArray[indexPath.row] retain];
     
     
         
@@ -125,6 +126,7 @@
     cell.detailTextLabel.text = model.descrip;
     [cell.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:model.photo.url] placeholderImage:[UIImage imageNamed:@"test.jpg"]];
     
+    [model release];
 
     return cell;
 }
@@ -138,7 +140,7 @@
     PicSecondViewController *picSecondVC = [[PicSecondViewController alloc]init];
     picSecondVC.allUrl = url;
     [self presentViewController:picSecondVC animated:YES completion:nil];
-
+    [picSecondVC release];
     
     
     
@@ -182,6 +184,13 @@
     
     [self.collectView reloadData];
     
+}
+
+- (void)dealloc
+{
+    _dataArray = nil;
+    [_collectView release];
+    [super dealloc];
 }
 
 

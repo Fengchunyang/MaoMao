@@ -10,7 +10,7 @@
 #import "Pictorial2Model.h"
 #import "PictorialCell.h"
 #import "MJRefresh.h"
-#import "WebViewController.h"
+
 @interface MagazineViewController ()<UITableViewDataSource , UITableViewDelegate>
 @property (nonatomic , retain)UITableView *tableView;
 @end
@@ -22,6 +22,7 @@
     
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.tableView];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -171,9 +172,9 @@
 //push进下一层
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WebViewController * ctr = [[WebViewController alloc] init];
+    MONONextViewController * ctr = [[MONONextViewController alloc] init];
     Pictorial2Model * model = [self.modelArray objectAtIndex:indexPath.row];
-    ctr.linkStr = model.linkStr1;
+    ctr.link = model.linkStr1;
     [self  presentViewController:ctr animated:YES completion:nil];
     [ctr release];
     

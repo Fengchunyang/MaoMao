@@ -7,7 +7,7 @@
 //
 
 #import "WangyiViewController.h"
-#import "Wangyi1ViewController.h"
+
 @interface WangyiViewController ()<UITableViewDataSource , UITableViewDelegate , NetWorkEngineDelegate>
 @property (nonatomic , retain)UITableView *tableView;
 @property (nonatomic , retain)NSMutableArray *arr;
@@ -122,9 +122,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Wangyi1ViewController *wangyi1 = [[Wangyi1ViewController alloc]init];
+    MONONextViewController *wangyi1 = [[MONONextViewController alloc]init];
     wangyi1.link = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"weburl"];
     [self  presentViewController:wangyi1 animated:YES completion:nil];
+    [wangyi1 release];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

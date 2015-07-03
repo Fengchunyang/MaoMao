@@ -17,12 +17,12 @@
 #import "PastViewController.h"
 #import "TeaViewController.h"
 
-
+#import "UMSocial.h"
 
 #define kItemWidth 100
-
+#import "PlayerViewController.h"
 @interface AppDelegate ()
-
+@property (nonatomic , retain)PlayerViewController *playerVC;
 @end
 
 @implementation AppDelegate
@@ -34,6 +34,39 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+    [UMSocialData setAppKey:@"55962bb367e58e94c2000af8"];
+    
+    [self next];
+    
+    return YES;
+}
+-(void)doFinished{
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    [player.view removeFromSuperview];
+    player = nil;
+    
+}
+- (void)teaAction
+{
+    _k++;
+    TeaViewController *teaVC = [TeaViewController new];
+    if (self.k%2 == 1) {
+        
+        [self.myButton setBackgroundImage:[UIImage imageNamed:@"112"] forState:UIControlStateNormal];
+        
+        [self.window.rootViewController presentViewController:teaVC animated:YES completion:NULL];
+    }else{
+        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        [self.myButton setBackgroundImage:[UIImage imageNamed:@"111"] forState:UIControlStateNormal];
+    }
+   
+    
+}
+
+- (void)next
+{
     
     ProgrammeViewController *proVC = [[ProgrammeViewController alloc]init];
     MONOViewController *monoVC = [[MONOViewController alloc]init];
@@ -49,13 +82,16 @@
     UIView *line1 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
     line1.backgroundColor = [UIColor cyanColor];
     line1.hidden = YES;
+   
     UIView *pro = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
     UILabel *label1 = [Function createLabelWithFrame:CGRectMake(0, 10, kItemWidth, 44 - 10) name:@"节目单"];
     label1.textColor = [UIColor whiteColor];
     //label1.backgroundColor = [UIColor yellowColor];
     [pro addSubview:line1];
     [pro addSubview:label1];
-    
+
+    [line1 release];
+    [label1 release];
     UIView *mono = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
     UIView *line2 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
     //line2.hidden = YES;
@@ -65,6 +101,10 @@
     //label2.backgroundColor = [UIColor yellowColor];
     [mono addSubview:line2];
     [mono addSubview:label2];
+    
+
+    [line2 release];
+    [label2 release];
     
     UIView *pic = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
     UIView *line3 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
@@ -76,6 +116,10 @@
     [pic addSubview:line3];
     [pic addSubview:label3];
     
+
+    [line3 release];
+    [label3 release];
+    
     UIView *cre = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
     UIView *line4 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
     line4.hidden = YES;
@@ -85,6 +129,10 @@
     //label4.backgroundColor = [UIColor yellowColor];
     [cre addSubview:line4];
     [cre addSubview:label4];
+    
+
+    [line4 release];
+    [label4 release];
     
     UIView *mag = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
     UIView *line5 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
@@ -96,6 +144,9 @@
     [mag addSubview:line5];
     [mag addSubview:label5];
     
+    [line5 release];
+    [label5 release];
+    
     UIView *past = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 44)];
     UIView *line6 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
     line6.hidden = YES;
@@ -105,7 +156,8 @@
     //label6.backgroundColor = [UIColor yellowColor];
     [past addSubview:line6];
     [past addSubview:label6];
-
+    [line6 release];
+    [label6 release];
     
     
     RootViewController *rootVC = [[RootViewController alloc]initWithNavBarItems:@[pro , mono , pic , cre , mag , past] navBarBackground:[UIColor clearColor] controllers:@[proVC , monoVC , picVC , creVC , magVC , pastVC] showPageControl:NO];;
@@ -117,14 +169,20 @@
     
     [rootVC setCurrentIndex:1 animated:YES];
     
-    
+    [rootVC release];
+    [pro release];
+    [mono release];
+    [cre release];
+    [mag release];
+    [past release];
+    [pic release];
     
     
     self.k = 0;
     
-
+    
     UIImage *image = [UIImage imageNamed:@"111"];
-   
+    
     self.myButton = [Function createButtonWithFrame:CGRectMake(kScreenBounds.size.width - 80, kScreenBounds.size.height - 70, 50, 50) title:nil];
     
     [self.myButton setBackgroundImage:image forState:UIControlStateNormal];
@@ -133,33 +191,22 @@
     [self.myButton addTarget:self action:@selector(teaAction) forControlEvents:UIControlEventTouchUpInside];
     
     
-
+    
     [self.window addSubview:self.myButton];
     
     
     
+    [proVC release];
+    [monoVC release];
+    [picVC release];
+    [creVC release];
+    [magVC release];
+    [pastVC release];
     
     
-    return YES;
+    
+
 }
-
-- (void)teaAction
-{
-    _k++;
-    TeaViewController *teaVC = [TeaViewController new];
-    if (self.k%2 == 1) {
-        
-        [self.myButton setBackgroundImage:[UIImage imageNamed:@"112"] forState:UIControlStateNormal];
-        
-        [self.window.rootViewController presentViewController:teaVC animated:YES completion:NULL];
-    }else{
-        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-        [self.myButton setBackgroundImage:[UIImage imageNamed:@"111"] forState:UIControlStateNormal];
-    }
-    
-}
-
-
 
 
 
@@ -183,6 +230,14 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)dealloc
+{
+    
+    [_myButton release];
+    
+    [super dealloc];
 }
 
 @end

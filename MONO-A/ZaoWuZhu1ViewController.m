@@ -8,7 +8,8 @@
 
 #import "ZaoWuZhu1ViewController.h"
 #import "ViceChinaDataModel.h"
-#import "ViceChinaViewController.h"
+
+
 @interface ZaoWuZhu1ViewController ()<UITableViewDataSource , UITableViewDelegate , NetWorkEngineDelegate>
 
 @property (nonatomic , retain)NSMutableArray *arr;
@@ -49,7 +50,7 @@
     //上拉加载更多
     [self.tableView addLegendFooterWithRefreshingBlock:^{
         [self setNum:count++];
-        NSLog(@"%ld" , _num);
+
         [self getDataFromUrl];
         
         [self.tableView reloadData];
@@ -149,9 +150,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ViceChinaViewController *vice = [[ViceChinaViewController alloc]init];
+    MONONextViewController *vice = [[MONONextViewController alloc]init];
    vice.link =  [[self.arr objectAtIndex:indexPath.row]objectForKey:@"url"];
     [self presentViewController:vice animated:YES completion:nil];
+    [vice release];
 }
 
 /*

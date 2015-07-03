@@ -69,27 +69,36 @@
         ZaoWuZhu1ViewController *zao1 = [[ZaoWuZhu1ViewController alloc]init];
         zao1.indexPath = indexPath;
         [self presentViewController:zao1 animated:YES completion:nil];
+        [zao1 release];
     }
     else if (indexPath.row == 1) {
         ZaoWuZhu2ViewController *zao2 = [[ZaoWuZhu2ViewController alloc]init];
         [self  presentViewController:zao2 animated:YES completion:nil];
+        [zao2 release];
         
     }else if (indexPath.row == 2){
         LiangCangViewController *liangcang = [[LiangCangViewController alloc]init];
         [self  presentViewController:liangcang animated:YES completion:nil];
+        [liangcang release];
     }else if (indexPath.row == 3){
         JianDanViewController *jiandan = [[JianDanViewController alloc]init];
         [self presentViewController:jiandan animated:YES completion:nil];
         
+        [jiandan release];
+        
     }else if (indexPath.row == 4){
         HuaBaoViewController *huabao = [[HuaBaoViewController alloc]init];
         [self presentViewController:huabao animated:YES completion:nil];
+        [huabao release];
     }else if (indexPath.row == 5){
         WangyiViewController *wangyi = [[WangyiViewController alloc]init];
         [self presentViewController:wangyi animated:YES completion:nil];
+        
+        [wangyi release];
     }else if (indexPath.row == 6){
         YingXiangViewController *yingxiang = [[YingXiangViewController alloc]init];
         [self presentViewController:yingxiang animated:YES completion:nil];
+        [yingxiang release];
     }
 }
 

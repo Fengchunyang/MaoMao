@@ -26,13 +26,8 @@
     [self.view addSubview :self.webView1];
     [self.webView1 release];
     
-    self.arr = [NSMutableArray array];
-    self.bigDic = [NSMutableDictionary dictionary];
-    self.bigDic = [NSMutableDictionary dictionaryWithDictionary:self.dic];
-    self.arr = [self.bigDic objectForKey:@"items"];
-    
-    self.link = [[self.arr objectAtIndex:self.indexPath.row] objectForKey:@"link"];
-    [self downLoding];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.link]];
+    [self.webView1 loadRequest:request];
     
     self.backBtn = [UIButton buttonWithType:1];
     self.backBtn.backgroundColor = [UIColor clearColor];
@@ -44,34 +39,36 @@
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(self.backBtn.frame.origin.x + 130, self.backBtn.frame.origin.y, self.backBtn.frame.size.width, self.backBtn.frame.size.height);
+    button.layer.cornerRadius = 20;
+    button.layer.masksToBounds = YES;
+
+    [button setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.backgroundColor = [UIColor blackColor];
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
 }
+
+- (void)buttonAction
+{
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"55962bb367e58e94c2000af8"
+                                      shareText:self.link
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent, nil]
+                                       delegate:nil];
+}
+
 
 - (void)backBtnAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)downLoding
-{
-    
-    if (self.link.length == 0) {
-        UIAlertView *alter = [[UIAlertView alloc]initWithTitle:@"提示" message:@"对不起，该页面不能访问" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
-        [alter show];
-    }else{
-        _HUD = [[MBProgressHUD alloc]initWithView:self.view];
-        [self.view.window addSubview:_HUD];
-        
-        
-        _HUD.labelText = @"玩命加载中.....";
-        [_HUD show:YES];
-        NSURL *reqUrl = [NSURL URLWithString:self.link];
-        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:reqUrl];
-
-        [self.webView1 loadRequest:request];
-        [_HUD hide:YES];
-        [_HUD release];
-    }
-}
 
 
 - (void)didReceiveMemoryWarning {

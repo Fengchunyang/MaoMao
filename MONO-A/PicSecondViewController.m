@@ -21,11 +21,16 @@
    
     
     UIWebView *web = [[UIWebView alloc]initWithFrame:kScreenBounds];
+
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.allUrl]];
     
      [web loadRequest:request];
+
     [self.view addSubview:web];
+
+    [web release];
     
+
     self.backBtn = [UIButton buttonWithType:1];
     self.backBtn.backgroundColor = [UIColor clearColor];
     self.backBtn.frame = CGRectMake(30, self.view.frame.size.height - 70, 50, 50);
@@ -57,5 +62,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)dealloc
+{
+    _allUrl = nil;
+    [_backBtn release];
+    [super dealloc];
+}
 
 @end

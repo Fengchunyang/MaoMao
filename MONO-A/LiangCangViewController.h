@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LiangCang1ViewController.h"
+
 @interface LiangCangViewController : UIViewController
 {
     MBProgressHUD *HUD;

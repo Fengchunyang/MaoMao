@@ -13,6 +13,8 @@
 @property (nonatomic , retain) UIWebView *web;
 
 
+
+
 @end
 
 @implementation TodayDetailViewController
@@ -20,14 +22,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self getDataFromNet];
+    //[self getDataFromNet];
     
     self.web = [[UIWebView alloc]initWithFrame:self.view.bounds];
+    [self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.todayDatailURL]]];
     [self.view addSubview:_web];
+    [_web release];
     
-    NSLog(@"%@",self.todayDatailURL);
+
     self.backBtn = [UIButton buttonWithType:1];
     self.backBtn.backgroundColor = [UIColor clearColor];
+    
     self.backBtn.frame = CGRectMake(30, self.view.frame.size.height - 70, 50, 50);
     self.backBtn.layer.cornerRadius = 25;
     self.backBtn.layer.masksToBounds = YES;
@@ -75,5 +80,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (void)dealloc
+{
+    _webStr = nil;
+    [_web release];
+    _todayDatailURL = nil;
+    [_backBtn release];
+    [super dealloc];
+}
 
 @end

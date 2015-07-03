@@ -24,18 +24,18 @@
 @interface ProgrammeViewController ()<NetWorkEngineDelegate>
 
 @property (nonatomic, assign) NSInteger slide;
-@property (nonatomic, strong) UIView *mainView;
-@property (nonatomic, strong) UIImageView *topImage;
-@property (nonatomic, strong) UIImageView *reflected;
-@property (nonatomic, strong) HACollectionViewLargeLayout *largeLayout;
-@property (nonatomic, strong) HACollectionViewSmallLayout *smallLayout;
+@property (nonatomic, retain) UIView *mainView;
+@property (nonatomic, retain) UIImageView *topImage;
+@property (nonatomic, retain) UIImageView *reflected;
+@property (nonatomic, retain) HACollectionViewLargeLayout *largeLayout;
+@property (nonatomic, retain) HACollectionViewSmallLayout *smallLayout;
 @property (nonatomic, getter=isFullscreen) BOOL fullscreen;
 @property (nonatomic, getter=isTransitioning) BOOL transitioning;
 @property (nonatomic, assign) BOOL isZooming;
 @property (nonatomic, assign) CGFloat lastScale;
 
 
-@property (strong, nonatomic) UIPinchGestureRecognizer *pinch;
+@property (retain, nonatomic) UIPinchGestureRecognizer *pinch;
 @property (nonatomic) CGFloat initialScale;
 
 @property (nonatomic , retain) NSMutableArray *dataArray;
@@ -132,9 +132,12 @@
     
     // Content perfect pixel
     UIView *perfectPixelContent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_topImage.bounds), 1)];
+    
+    
     perfectPixelContent.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
     [_topImage addSubview:perfectPixelContent];
     
+    [perfectPixelContent release];
     
     // Label logo
     UILabel *logo = [[UILabel alloc] initWithFrame:CGRectMake(15, 12, 290, 0)];
@@ -151,6 +154,7 @@
     [logo.layer setShadowOpacity:0.6];
     [_mainView addSubview:logo];
     
+    [logo release];
     
     // Label Title
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(15, logo.frame.origin.y + CGRectGetHeight(logo.frame) + 8, 290, 0)];
@@ -166,7 +170,7 @@
     [title.layer setShadowRadius:1.0];
     [title.layer setShadowOpacity:0.6];
     [_mainView addSubview:title];
-    
+    [title release];
     
     // Label SubTitle
     UILabel *subTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, title.frame.origin.y + CGRectGetHeight(title.frame), 290, 0)];
@@ -184,6 +188,7 @@
     [subTitle.layer setShadowRadius:1.0];
     [subTitle.layer setShadowOpacity:0.6];
     [_mainView addSubview:subTitle];
+    [subTitle release];
     //[self.view addSubview:_mainView];
     [self.view addSubview:_collectionView];
     
@@ -232,16 +237,19 @@
                     if ([newDic[@"title"]isEqualToString:@"苹果"]) {
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
+                        [proModel release];
                         
                     }
                     if ([newDic[@"title"]isEqualToString:@"摄影学堂"]){
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
+                        [proModel release];
                     }
                     
                     if ([newDic[@"title"]isEqualToString:@"BAT"]){
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
+                        [proModel release];
                     }
                 }
             }
@@ -261,6 +269,7 @@
                             if ([dic[@"title"]isEqualToString:@"视觉志"]) {
                                 ProModel *proModel = [[ProModel alloc]initWithDictionary:dic];
                                 [self.dataArray addObject:proModel];
+                                [proModel release];
                             }
                         }
                         
@@ -281,18 +290,21 @@
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
                         
+                        [proModel release];
                     }
                     
                     if ([newDic[@"title"]isEqualToString:@"极客公园"]) {
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
                         
+                        [proModel release];
                     }
                     
                     if ([newDic[@"title"]isEqualToString:@"观察者网-科技"]) {
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
                         
+                        [proModel release];
                     }
                 }
             }
@@ -306,12 +318,14 @@
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
                         
+                        [proModel release];
                     }
                     
                     if ([newDic[@"title"]isEqualToString:@"凤凰网娱乐"]) {
                         ProModel *proModel = [[ProModel alloc]initWithDictionary:newDic];
                         [self.dataArray addObject:proModel];
                         
+                        [proModel release];
                     }
                     
                 }
@@ -376,7 +390,7 @@
     
     cell.backgroundView = backgroundView;
     
-    
+    [backgroundView release];
     return cell;
 }
 
@@ -518,5 +532,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+- (void)dealloc
+{
+    _imageArray = nil;
+    _dataArray = nil;
+    [_pinch release];
+    [_smallLayout release];
+    [_largeLayout release];
+    [_reflected release];
+    [_topImage release];
+    [_mainView release];
+    [_collectionView release];
+    [super dealloc];
+}
 
 @end

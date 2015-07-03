@@ -8,7 +8,7 @@
 
 #import "HuaBaoViewController.h"
 #import "HuaBaoDataModel.h"
-#import "Huabao1ViewController.h"
+
 @interface HuaBaoViewController ()<UITableViewDataSource , UITableViewDelegate , NetWorkEngineDelegate>
 @property (nonatomic , retain)UITableView *tableView;
 @property (nonatomic , retain)NSMutableArray *arr;
@@ -95,9 +95,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Huabao1ViewController *huabao1 = [[Huabao1ViewController alloc]init];
+    MONONextViewController *huabao1 = [[MONONextViewController alloc]init];
   huabao1.link =  [[self.arr objectAtIndex:indexPath.row]objectForKey:@"weburl"];
     [self  presentViewController:huabao1 animated:YES completion:nil];
+    [huabao1 release];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

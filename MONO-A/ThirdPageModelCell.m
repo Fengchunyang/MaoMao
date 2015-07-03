@@ -51,7 +51,7 @@
     NSString *contentText = self.label2.text;
     NSString *label1Text = self.label1.text;
 
-    //    NSLog(@"%@" , contentText);
+
     CGSize maxSize = CGSizeMake(self.label2.frame.size.width, 1000);
     CGSize maxSize2 = CGSizeMake(self.label1.frame.size.width, 1000);
     
@@ -68,7 +68,7 @@
     self.label2.frame = CGRectMake(self.label2.frame.origin.x, self.label1.frame.origin.y + self.label1.frame.size.height + 2 * kSpace, self.label2.frame.size.width, textRect.size.height);
 
 
-//    NSLog(@"%f" , self.label2.frame.size.height);
+
     
     //改变cintentView的frame
     if (self.label2.frame.size.height > (self.imaView.frame.size.height - 2 * kSpace - self.label1.frame.size.height)) {

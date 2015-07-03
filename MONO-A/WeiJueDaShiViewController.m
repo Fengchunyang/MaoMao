@@ -28,7 +28,7 @@
     HUD.labelText = @"玩命加载中....";
     [HUD show:YES];
     NSString *str = [NSString stringWithFormat:@"http://app.legendzest.cn/index.php?g=api24&m=cookbook&a=getinfo&version=2.0&device=8C510210-FD01-4A04-A6AD-B8ACBAA75532&d_type=2&safe_code=safe_code_shangweiji&uid=null&uid=&igetui_cid=0&id=%ld" , (long)[self.idStr integerValue]];
-    NSLog(@"%@" , str);
+
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:str]];
     
     [webView loadRequest:request];
@@ -44,7 +44,29 @@
     [self.backBtn setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.frame = CGRectMake(self.backBtn.frame.origin.x + 130, self.backBtn.frame.origin.y, self.backBtn.frame.size.width, self.backBtn.frame.size.height);
+    button.layer.cornerRadius = 20;
+    button.layer.masksToBounds = YES;
+    
+    [button setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    button.backgroundColor = [UIColor blackColor];
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+    
+
 }
+- (void)buttonAction
+{
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"55962bb367e58e94c2000af8"
+                                      shareText: [NSString stringWithFormat:@"http://app.legendzest.cn/index.php?g=api24&m=cookbook&a=getinfo&version=2.0&device=8C510210-FD01-4A04-A6AD-B8ACBAA75532&d_type=2&safe_code=safe_code_shangweiji&uid=null&uid=&igetui_cid=0&id=%ld" , (long)[self.idStr integerValue]]
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToTencent , nil]
+                                       delegate:nil];
+}
+
 - (void)backBtnAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];

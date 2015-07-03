@@ -27,14 +27,20 @@
     self.slide = 0;
     [self getDataFromNet];
     
+
+    
     self.view.backgroundColor = [UIColor yellowColor];
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    [_tableView release];
     
     self.backBtn = [UIButton buttonWithType:1];
+
     self.backBtn.backgroundColor = [UIColor clearColor];
+    
+
     self.backBtn.frame = CGRectMake(30, self.view.frame.size.height - 70, 50, 50);
     self.backBtn.layer.cornerRadius = 25;
     self.backBtn.layer.masksToBounds = YES;
@@ -42,7 +48,7 @@
     [self.view addSubview:self.backBtn];
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
-//    NSLog(@"%@",self.TodayUrl);
+
     
     
     // Do any additional setup after loading the view.
@@ -74,6 +80,7 @@
                     NSDictionary *dic1 = array[i];
                     moday.photo = dic1[@"url"];
                     [moday.imageArray addObject:moday.photo];
+                    
                 }
             }else{
                 NSDictionary *dic1 = array[0];
@@ -140,8 +147,9 @@
   
     
     
+    // MRC
     TodayModel *model = [[TodayModel alloc]init];
-    model = self.dataArray[indexPath.row];
+    model = [self.dataArray[indexPath.row] retain];
     //cell.textLabel.text = str;
     
     cell.title.text = model.title;
@@ -177,6 +185,8 @@
     
     [cell HeightForCell];
     
+    [model release];
+    
     return cell;
 }
 
@@ -204,6 +214,7 @@
     TodayDetailViewController *today = [[TodayDetailViewController alloc]init];
     today.todayDatailURL = ((TodayModel *)self.dataArray[indexPath.row]).full_url;
     [self presentViewController:today animated:YES completion:nil];
+
 }
 /*
 #pragma mark - Navigation
@@ -214,5 +225,17 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+- (void)dealloc
+{
+    _dataArray = nil;
+    [_images release];
+    [_tableView release];
+    _TodayUrl = nil;
+    [_backBtn release];
+    [super dealloc];
+}
 
 @end

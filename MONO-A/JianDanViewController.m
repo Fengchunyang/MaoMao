@@ -8,7 +8,7 @@
 
 #import "JianDanViewController.h"
 
-#import "Jiandan2ViewController.h"
+
 @interface JianDanViewController ()<UITableViewDataSource , UITableViewDelegate  ,NetWorkEngineDelegate>
 @property (nonatomic , retain)UITableView *tableView;
 @property (nonatomic , retain)NSMutableArray *arr;
@@ -128,9 +128,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Jiandan2ViewController *jiandan2 = [[Jiandan2ViewController alloc]init];
+    MONONextViewController *jiandan2 = [[MONONextViewController alloc]init];
     jiandan2.link = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"url"];
     [self presentViewController:jiandan2 animated:YES completion:nil];
+    [jiandan2 release];
 }
 /*
 #pragma mark - Navigation
