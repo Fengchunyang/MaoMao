@@ -41,6 +41,7 @@
     self.arr = @[@"小明" , @"小王" , @"小李"];
     
     [self getDataFromUrl];
+    [self.tableView release];
     
     // Do any additional setup after loading the view.
 }
@@ -54,7 +55,7 @@
 - (void)netWorkDidFinishLoading:(NetWorkEngine *)engine withInfo:(id)info
 {
     NSData *data = (NSData *)info;
-    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

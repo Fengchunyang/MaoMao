@@ -31,10 +31,10 @@
 //    _tableView.backgroundColor = [UIColor blackColor];
     
    
-    self.bigDic = [NSDictionary dictionary];
+
     
     
-    self.arr = [NSMutableArray array];
+
     self.num = 1;
     [self getDataFromUrl];
     
@@ -92,7 +92,13 @@
     
 
 }
-
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
+}
 - (void)netWorkDidFinishLoading:(NetWorkEngine *)engine withInfo:(id)info
 {
     NSData *data = (NSData *)info;

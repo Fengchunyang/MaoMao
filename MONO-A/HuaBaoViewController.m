@@ -23,8 +23,7 @@
     [super viewDidLoad];
     self.tableView =[[ UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.tableView];
-    self.arr = [NSMutableArray array];
-    self.bigDic = [NSMutableDictionary dictionary];
+   
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self getDataFromUrl];
@@ -56,7 +55,13 @@
     [self.tableView.header endRefreshing];
     
 }
-
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
+}
 - (void)backBtnAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];

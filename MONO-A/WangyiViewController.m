@@ -90,6 +90,13 @@
 {
     return 1;
 }
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *dic = [self.arr objectAtIndex:indexPath.row];

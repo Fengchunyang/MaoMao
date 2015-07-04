@@ -14,10 +14,10 @@
 @interface RootViewController ()<UIScrollViewDelegate>
 
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) UIView *navigationBarView;
-@property (nonatomic, strong) NSMutableArray *subviews;
+@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic, retain) UIView *navigationBarView;
+@property (nonatomic, retain) NSMutableArray *subviews;
 @property (nonatomic) BOOL needToShowPageControl;
 @property (nonatomic) BOOL isUserInteraction;
 @property (nonatomic) NSInteger indexSelected;
@@ -132,6 +132,7 @@
             UILabel *item = [UILabel new];
             [item setText:ctr.title];
             [items addObject:item];
+            [item release];
         }
     }
     return [self initWithNavBarItems:items
@@ -167,6 +168,7 @@
                     navBarBackground:background
                                views:views
                      showPageControl:addPageControl];
+    
 }
 
 #pragma mark - LifeCycle
@@ -225,6 +227,8 @@
     // Get the right position and update it
     CGFloat xOffset    = (index * ((int)SCREEN_SIZE.width));
     [self.scrollView setContentOffset:CGPointMake(xOffset, self.scrollView.contentOffset.y) animated:animated];
+    
+    
 }
 
 #pragma mark 把控制器的view作为字典的value  不走
@@ -236,6 +240,7 @@
         UILabel *item = [UILabel new];
         [item setText:controller.title];
         v = item;
+        [item release];
     }
     else if(controller.navigationItem && controller.navigationItem.titleView){
         v = controller.navigationItem.titleView;
@@ -310,6 +315,7 @@
     
     [v addGestureRecognizer:tap];
     [v setUserInteractionEnabled:YES];
+    [tap release];
     
     [_navigationBarView addSubview:v];
     if(!_subviews)
@@ -318,6 +324,8 @@
     
     
     [_subviews addObject:v];
+    
+    [v release];
 }
 
 #pragma mark - 添加item
@@ -333,6 +341,7 @@
     self.scrollView.bounces                        = NO;
     [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.view addSubview:self.scrollView];
+    [_scrollView release];
     
     // Adds all views
     [self addControllers];
@@ -346,8 +355,10 @@
         if(self.currentPageControlColor) self.pageControl.currentPageIndicatorTintColor = self.currentPageControlColor;
         if(self.tintPageControlColor) self.pageControl.pageIndicatorTintColor = self.tintPageControlColor;
         [self.navigationBarView addSubview:self.pageControl];
+        [_pageControl release];
     }
     [self.navigationController.navigationBar addSubview:self.navigationBarView];
+    [_navigationBarView release];
 }
 
 // Add all views
@@ -484,8 +495,49 @@
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     [self sendNewIndex:scrollView];
 }
-
-
+/*
+ 
+ @property (nonatomic, strong) UIScrollView *scrollView;
+ @property (nonatomic, strong) UIPageControl *pageControl;
+ @property (nonatomic, strong) UIView *navigationBarView;
+ @property (nonatomic, strong) NSMutableArray *subviews;
+ @property (nonatomic) BOOL needToShowPageControl;
+ @property (nonatomic) BOOL isUserInteraction;
+ @property (nonatomic) NSInteger indexSelected;
+ @property (nonatomic , assign) CGFloat scrollViewOffsize;
+ 
+ @property (nonatomic , retain) UIView *lineView;
+ @property (nonatomic , retain) UIView *view1;
+ 
+ 
+ @property (nonatomic, copy) SLPagingViewMovingRedefine pagingViewMovingRedefine;
+ 
+ @property (nonatomic, copy) SLPagingViewMoving pagingViewMoving;
+ 
+ @property (nonatomic, copy) SLPagingViewDidChanged didChangedPage;
+ 
+ @property (nonatomic, strong) NSMutableDictionary *viewControllers;
+ 
+ @property (nonatomic, strong) UIColor *tintPageControlColor;
+ 
+ @property (nonatomic, strong) UIColor *currentPageControlColor;
+ 
+ */
+- (void)dealloc
+{
+    
+    
+    _viewControllers = nil;
+    [_currentPageControlColor release];
+    [_tintPageControlColor release];
+    [_scrollView release];
+    [_pageControl release];
+    [_navigationBarView release];
+    [_subviews release];
+    [_lineView release];
+    [_view1 release];
+    [super dealloc];
+}
 
 
 @end
@@ -511,34 +563,10 @@ NSString * const SLPagingViewPrefixIdentifier = @"sl_";
 }
 
 
-/*
- 
- @property (nonatomic, strong) UIScrollView *scrollView;
- @property (nonatomic, strong) UIPageControl *pageControl;
- @property (nonatomic, strong) UIView *navigationBarView;
- @property (nonatomic, strong) NSMutableArray *subviews;
- @property (nonatomic) BOOL needToShowPageControl;
- @property (nonatomic) BOOL isUserInteraction;
- @property (nonatomic) NSInteger indexSelected;
- @property (nonatomic , assign) CGFloat scrollViewOffsize;
- 
- @property (nonatomic , retain) UIView *lineView;
- @property (nonatomic , retain) UIView *view1;
 
- 
- @property (nonatomic, copy) SLPagingViewMovingRedefine pagingViewMovingRedefine;
- 
- @property (nonatomic, copy) SLPagingViewMoving pagingViewMoving;
- 
- @property (nonatomic, copy) SLPagingViewDidChanged didChangedPage;
- 
- @property (nonatomic, strong) NSMutableDictionary *viewControllers;
- 
- @property (nonatomic, strong) UIColor *tintPageControlColor;
- 
- @property (nonatomic, strong) UIColor *currentPageControlColor;
- 
- */
+
+
+
 
 
 

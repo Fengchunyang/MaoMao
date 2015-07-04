@@ -24,13 +24,15 @@
     self.webView1 = [[UIWebView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.webView1.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview :self.webView1];
-    [self.webView1 release];
+    
     
     if ((!([self.link isKindOfClass:[NSNull class]]) ) &&(self.link.length > 0) ) {
         NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.link]];
         [self.webView1 loadRequest:request];
     }else{
+         NSLog(@"self.link = %@" , self.link);
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"你所访问的网页不存在" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
+       
         [alert show];
         [alert release];
     }
@@ -56,7 +58,7 @@
     [self.view addSubview:button];
     button.backgroundColor = [UIColor lightGrayColor];
     [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self.webView1 release];
     
     
 }

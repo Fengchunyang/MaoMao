@@ -52,6 +52,13 @@
     [self.tableView reloadData];
     [self stopReloadData];
 }
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
+}
 - (void)stopReloadData
 {
     [self.tableView.header endRefreshing];

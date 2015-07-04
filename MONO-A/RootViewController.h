@@ -33,11 +33,11 @@ typedef void(^SLPagingViewDidChanged)(NSInteger currentPage);
 
 @property (nonatomic, copy) SLPagingViewDidChanged didChangedPage;
 
-@property (nonatomic, strong) NSMutableDictionary *viewControllers;
+@property (nonatomic, retain) NSMutableDictionary *viewControllers;
 
-@property (nonatomic, strong) UIColor *tintPageControlColor;
+@property (nonatomic, retain) UIColor *tintPageControlColor;
 
-@property (nonatomic, strong) UIColor *currentPageControlColor;
+@property (nonatomic, retain) UIColor *currentPageControlColor;
 
 
 @property (nonatomic) SLNavigationSideItemsStyle navigationSideItemsStyle;

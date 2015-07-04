@@ -26,8 +26,7 @@
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.tableView];
     [self.tableView release];
-    self.arr = [NSMutableArray array];
-    self.bigDic = [NSMutableDictionary dictionary];
+   
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self getDataFromUrl];
@@ -132,6 +131,13 @@
     jiandan2.link = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"url"];
     [self presentViewController:jiandan2 animated:YES completion:nil];
     [jiandan2 release];
+}
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
 }
 /*
 #pragma mark - Navigation

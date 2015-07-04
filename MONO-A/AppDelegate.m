@@ -156,6 +156,7 @@
     //label6.backgroundColor = [UIColor yellowColor];
     [past addSubview:line6];
     [past addSubview:label6];
+    
     [line6 release];
     [label6 release];
     

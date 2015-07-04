@@ -26,8 +26,8 @@
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview: self.tableView];
 
-    self.arr = [NSMutableArray array];
-    self.bigDic = [NSMutableDictionary dictionary];
+
+
     self.num = 1;
     [self getDataFromUrl];
     self.tableView.dataSource = self;
@@ -155,7 +155,13 @@
     [self presentViewController:vice animated:YES completion:nil];
     [vice release];
 }
-
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
+}
 /*
 #pragma mark - Navigation
 

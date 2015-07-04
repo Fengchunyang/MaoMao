@@ -136,7 +136,6 @@
 		34E82A1C1B43E143000468D6 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E82A0F1B43E143000468D6 /* UIScrollView+MJRefresh.m */; };
 		34E82A1D1B43E143000468D6 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E82A111B43E143000468D6 /* UIView+MJExtension.m */; };
 		34E82A201B43E659000468D6 /* PictorialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E82A1F1B43E659000468D6 /* PictorialModel.m */; };
-		34E9C8CC1B451567006675CD /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E9C8CB1B451567006675CD /* MediaPlayer.framework */; };
 		34E9C8CF1B451680006675CD /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9C8CE1B451680006675CD /* PlayerViewController.m */; };
 		81E0BCEB1B40364300E5FE6E /* HACollectionViewSmallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E0BCE81B40364300E5FE6E /* HACollectionViewSmallLayout.m */; };
 		81E0BCEC1B40364300E5FE6E /* HACollectionViewLargeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E0BCEA1B40364300E5FE6E /* HACollectionViewLargeLayout.m */; };
@@ -401,7 +400,6 @@
 		34E82A111B43E143000468D6 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		34E82A1E1B43E659000468D6 /* PictorialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictorialModel.h; sourceTree = "<group>"; };
 		34E82A1F1B43E659000468D6 /* PictorialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictorialModel.m; sourceTree = "<group>"; };
-		34E9C8CB1B451567006675CD /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MediaPlayer.framework; sourceTree = "<group>"; };
 		34E9C8CD1B451680006675CD /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		34E9C8CE1B451680006675CD /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		81E0BCE71B40364300E5FE6E /* HACollectionViewSmallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HACollectionViewSmallLayout.h; sourceTree = "<group>"; };
@@ -418,7 +416,6 @@
 				34C4F8531B3E426100C6215F /* MapKit.framework in Frameworks */,
 				341346341B46731900ECB069 /* libSocialWechat.a in Frameworks */,
 				341346351B46731900ECB069 /* libWeChatSDK.a in Frameworks */,
-				34E9C8CC1B451567006675CD /* MediaPlayer.framework in Frameworks */,
 				341346161B466B7000ECB069 /* libUMSocial_Sdk_4.2.2.a in Frameworks */,
 				34C4F8511B3E425700C6215F /* ImageIO.framework in Frameworks */,
 			);
@@ -578,7 +575,6 @@
 		34C43F861B3BD7FE00A5D0DB = {
 			isa = PBXGroup;
 			children = (
-				34E9C8CB1B451567006675CD /* MediaPlayer.framework */,
 				34C4F8521B3E426100C6215F /* MapKit.framework */,
 				34C4F8501B3E425700C6215F /* ImageIO.framework */,
 				34C43FD41B3BE2C700A5D0DB /* PrefixHeader.pch */,

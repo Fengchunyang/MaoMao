@@ -19,7 +19,7 @@
 + (UIView *)createViewWithFrame:(CGRect)frame
 {
     UIView *view = [[UIView alloc]initWithFrame:frame];
-    return view;
+    return [view autorelease];
 }
 
 // 创建label

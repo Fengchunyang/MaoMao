@@ -58,6 +58,7 @@
     
     self.collectView = [[UICollectionView alloc]initWithFrame:[UIScreen mainScreen].bounds collectionViewLayout:layout];
     
+
     self.collectView.delegate = self;
     self.collectView.dataSource = self;
     

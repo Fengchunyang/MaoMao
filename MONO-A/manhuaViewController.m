@@ -51,7 +51,7 @@
     button.layer.cornerRadius = 25;
     [self.view addSubview:button];
     
-    
+    [self.Contableview release];
     
     
     // Do any additional setup after loading the view.
@@ -121,7 +121,7 @@
     ctr.ctr1 = self;
     [self   presentViewController:ctr animated:YES completion:nil];
     
-    
+    [ctr release];
 
 }
 

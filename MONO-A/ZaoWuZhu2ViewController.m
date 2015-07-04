@@ -26,8 +26,7 @@
     [self.view addSubview: self.tableView];
     
     [self.tableView release];
-    self.arr = [NSMutableArray array];
-    self.bigDic = [NSMutableDictionary dictionary];
+    
     self.num = 1;
     
     self.tableView.dataSource = self;
@@ -181,6 +180,13 @@
     weijue.idStr = [[self.arr objectAtIndex:indexPath.row]objectForKey:@"id"];
     [self  presentViewController:weijue animated:YES completion:nil];
     [weijue release];
+}
+- (NSMutableArray *)arr
+{
+    if (!_arr) {
+        self.arr = [NSMutableArray array];
+    }
+    return _arr;
 }
 
 - (void)dealloc
