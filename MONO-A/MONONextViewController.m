@@ -8,7 +8,7 @@
 
 #import "MONONextViewController.h"
 
-@interface MONONextViewController ()<NetWorkEngineDelegate>
+@interface MONONextViewController ()<NetWorkEngineDelegate , UIAlertViewDelegate>
 @property (nonatomic , retain)MBProgressHUD *HUD;
 @property (nonatomic , retain)NSMutableArray *arr;
 @property (nonatomic , retain)NSMutableDictionary *bigDic;
@@ -26,8 +26,16 @@
     [self.view addSubview :self.webView1];
     [self.webView1 release];
     
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.link]];
-    [self.webView1 loadRequest:request];
+    if ((!([self.link isKindOfClass:[NSNull class]]) ) &&(self.link.length > 0) ) {
+        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:self.link]];
+        [self.webView1 loadRequest:request];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"你所访问的网页不存在" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+    
+    
     
     self.backBtn = [UIButton buttonWithType:1];
     self.backBtn.backgroundColor = [UIColor clearColor];
@@ -40,17 +48,24 @@
     
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(self.backBtn.frame.origin.x + 130, self.backBtn.frame.origin.y, self.backBtn.frame.size.width, self.backBtn.frame.size.height);
-    button.layer.cornerRadius = 20;
+    button.frame = CGRectMake(self.backBtn.frame.origin.x + 130, self.backBtn.frame.origin.y, self.backBtn.frame.size.width - 3, self.backBtn.frame.size.height - 3);
+    button.layer.cornerRadius = 8;
     button.layer.masksToBounds = YES;
 
     [button setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [self.view addSubview:button];
-    button.backgroundColor = [UIColor blackColor];
+    button.backgroundColor = [UIColor lightGrayColor];
     [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
     
     
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self backBtnAction:nil];
+    }
 }
 
 - (void)buttonAction

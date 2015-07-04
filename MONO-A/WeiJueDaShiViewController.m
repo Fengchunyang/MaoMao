@@ -23,17 +23,35 @@
     UIWebView *webView = [[UIWebView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:webView];
     
+    
+    
+    
         HUD = [[MBProgressHUD alloc]initWithView:webView];
     [webView.window addSubview:HUD];
     HUD.labelText = @"玩命加载中....";
     [HUD show:YES];
+    
+    
+    
+    
     NSString *str = [NSString stringWithFormat:@"http://app.legendzest.cn/index.php?g=api24&m=cookbook&a=getinfo&version=2.0&device=8C510210-FD01-4A04-A6AD-B8ACBAA75532&d_type=2&safe_code=safe_code_shangweiji&uid=null&uid=&igetui_cid=0&id=%ld" , (long)[self.idStr integerValue]];
 
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:str]];
     
-    [webView loadRequest:request];
-    [HUD hide:YES];
-    [HUD release];
+    
+    if ((!([self.idStr isKindOfClass:[NSNull class]]) ) &&(self.idStr.length > 0) ) {
+        NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:str]];
+        
+        [webView loadRequest:request];
+        [HUD hide:YES];
+        
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"你所访问的网页不存在" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+    
+
+   [HUD release];
     [webView release];
     
     self.backBtn = [UIButton buttonWithType:1];
@@ -46,8 +64,8 @@
     [self.backBtn addTarget:self action:@selector(backBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(self.backBtn.frame.origin.x + 130, self.backBtn.frame.origin.y, self.backBtn.frame.size.width, self.backBtn.frame.size.height);
-    button.layer.cornerRadius = 20;
+    button.frame = CGRectMake(self.backBtn.frame.origin.x + 130, self.backBtn.frame.origin.y, self.backBtn.frame.size.width - 3, self.backBtn.frame.size.height - 3);
+    button.layer.cornerRadius = 8;
     button.layer.masksToBounds = YES;
     
     [button setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
@@ -56,6 +74,13 @@
     [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
     
 
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self backBtnAction:nil];
+    }
 }
 - (void)buttonAction
 {

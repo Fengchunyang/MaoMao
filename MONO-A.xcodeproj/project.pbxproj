@@ -125,10 +125,6 @@
 		34E9C8CF1B451680006675CD /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34E9C8CE1B451680006675CD /* PlayerViewController.m */; };
 		81E0BCEB1B40364300E5FE6E /* HACollectionViewSmallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E0BCE81B40364300E5FE6E /* HACollectionViewSmallLayout.m */; };
 		81E0BCEC1B40364300E5FE6E /* HACollectionViewLargeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E0BCEA1B40364300E5FE6E /* HACollectionViewLargeLayout.m */; };
-		81E0BCEE1B4037D100E5FE6E /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0BCED1B4037D100E5FE6E /* image2.png */; };
-		81E0BCF01B4037EC00E5FE6E /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0BCEF1B4037EC00E5FE6E /* image3.png */; };
-		81E0BCF21B4037F400E5FE6E /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0BCF11B4037F400E5FE6E /* image1.png */; };
-		81E0BCF41B4037FB00E5FE6E /* image4.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E0BCF31B4037FB00E5FE6E /* image4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,10 +363,6 @@
 		81E0BCE81B40364300E5FE6E /* HACollectionViewSmallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HACollectionViewSmallLayout.m; sourceTree = "<group>"; };
 		81E0BCE91B40364300E5FE6E /* HACollectionViewLargeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HACollectionViewLargeLayout.h; sourceTree = "<group>"; };
 		81E0BCEA1B40364300E5FE6E /* HACollectionViewLargeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HACollectionViewLargeLayout.m; sourceTree = "<group>"; };
-		81E0BCED1B4037D100E5FE6E /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
-		81E0BCEF1B4037EC00E5FE6E /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
-		81E0BCF11B4037F400E5FE6E /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
-		81E0BCF31B4037FB00E5FE6E /* image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -489,11 +481,7 @@
 				34C4F8501B3E425700C6215F /* ImageIO.framework */,
 				34C43FD41B3BE2C700A5D0DB /* PrefixHeader.pch */,
 				34C43FD51B3BE2FB00A5D0DB /* Function.h */,
-				81E0BCEF1B4037EC00E5FE6E /* image3.png */,
-				81E0BCF11B4037F400E5FE6E /* image1.png */,
-				81E0BCF31B4037FB00E5FE6E /* image4.png */,
 				34C43FD61B3BE2FB00A5D0DB /* Function.m */,
-				81E0BCED1B4037D100E5FE6E /* image2.png */,
 				34C43F911B3BD7FE00A5D0DB /* MONO-A */,
 				34C43FA51B3BD7FE00A5D0DB /* MONO-ATests */,
 				34C43F901B3BD7FE00A5D0DB /* Products */,
@@ -940,10 +928,8 @@
 				341346191B466B7000ECB069 /* UMSCommentInputControlleriPad.xib in Resources */,
 				3413461D1B466B7000ECB069 /* UMSnsAccountViewController.xib in Resources */,
 				341346371B46731900ECB069 /* iOS-social-releasenote.html in Resources */,
-				81E0BCF41B4037FB00E5FE6E /* image4.png in Resources */,
 				34C43F9D1B3BD7FE00A5D0DB /* LaunchScreen.xib in Resources */,
 				34E82A121B43E143000468D6 /* MJRefresh.bundle in Resources */,
-				81E0BCF21B4037F400E5FE6E /* image1.png in Resources */,
 				341346401B46731900ECB069 /* ios-social-sdk-socialBar.html in Resources */,
 				341346361B46731900ECB069 /* iOS-social-analytics-releasenote.html in Resources */,
 				34C43FF41B3C247100A5D0DB /* Images.xcassets in Resources */,
@@ -959,9 +945,7 @@
 				341346181B466B7000ECB069 /* UMSCommentInputController.xib in Resources */,
 				3413461F1B466B7000ECB069 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				341346391B46731900ECB069 /* ios-social-sdk-comment-quick.html in Resources */,
-				81E0BCEE1B4037D100E5FE6E /* image2.png in Resources */,
 				3413461A1B466B7000ECB069 /* UMShareEditViewController.xib in Resources */,
-				81E0BCF01B4037EC00E5FE6E /* image3.png in Resources */,
 				3413461C1B466B7000ECB069 /* UMSLoginViewController.xib in Resources */,
 				3413463F1B46731900ECB069 /* ios-social-sdk-share-quick.html in Resources */,
 				341346381B46731900ECB069 /* ios-social-sdk-comment-detail.html in Resources */,

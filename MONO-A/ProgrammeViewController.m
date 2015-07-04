@@ -65,7 +65,7 @@
     }
     
     [self getDataFromNet];
-    self.galleryImages = @[@"Image1", @"Image2", @"Image3", @"Image4"];
+    self.galleryImages = @[@"image1", @"image2", @"image3", @"image4"];
     _slide = 0;
     
     

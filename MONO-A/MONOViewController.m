@@ -28,7 +28,7 @@
 
     _tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview: _tableView];
-    _tableView.backgroundColor = [UIColor blackColor];
+//    _tableView.backgroundColor = [UIColor blackColor];
     
    
     self.bigDic = [NSDictionary dictionary];
