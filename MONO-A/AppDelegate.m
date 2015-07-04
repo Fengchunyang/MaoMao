@@ -151,7 +151,7 @@
     UIView *line6 = [Function createViewWithFrame:CGRectMake(0, 0, kItemWidth, 3)];
     line6.hidden = YES;
     line6.backgroundColor = [UIColor cyanColor];
-    UILabel *label6 = [Function createLabelWithFrame:label1.frame  name:@"往期"];
+    UILabel *label6 = [Function createLabelWithFrame:label1.frame  name:@"漫画"];
     label6.textColor = [UIColor whiteColor];
     //label6.backgroundColor = [UIColor yellowColor];
     [past addSubview:line6];
