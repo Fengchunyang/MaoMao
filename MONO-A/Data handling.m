@@ -37,6 +37,7 @@
     NSURL * url = [NSURL URLWithString:self.urlstr];
     NSURLRequest * request = [[NSURLRequest alloc] initWithURL:url];
     self.connection = [NSURLConnection connectionWithRequest:request  delegate:self];
+    [request release];
     
 }
 -(void)cancelDownLoader
@@ -68,6 +69,7 @@
        // NSLog(@"%@",dic);
         ProgramModel * model = [[ProgramModel alloc] initWithDictionary:dic];
         [Modelarray addObject:model];
+        [model release];
        // NSLog(@"%@",Modelarray);
     }
     if (_delegate && [_delegate respondsToSelector:@selector(DatahandlingdidFinshLoadingModel:)]) {

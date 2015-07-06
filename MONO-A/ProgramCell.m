@@ -20,7 +20,7 @@
 -(UIImageView *)photoView
 {
     if (!_photoView) {
-        self.photoView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
+        _photoView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
        // _photoView.placeholderImage = [UIImage imageNamed:@"03.png"];
         [self.contentView addSubview:_photoView];
         [_photoView release];
@@ -30,7 +30,7 @@
 -(UILabel *)label
 {
     if (!_label) {
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 75)];
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 75)];
         [self.contentView addSubview:_label];
         [_label release];
     }
@@ -40,7 +40,7 @@
 -(UILabel *)introLabel
 {
     if (!_introLabel) {
-        self.introLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 75, 150, 75)];
+        _introLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 75, 150, 75)];
         [self.contentView addSubview:_introLabel];
         [_introLabel release];
     }

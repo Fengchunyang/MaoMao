@@ -40,30 +40,6 @@
     
     return YES;
 }
--(void)doFinished{
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    
-    [player.view removeFromSuperview];
-    player = nil;
-    
-}
-- (void)teaAction
-{
-    _k++;
-    TeaViewController *teaVC = [TeaViewController new];
-    if (self.k%2 == 1) {
-        
-        [self.myButton setBackgroundImage:[UIImage imageNamed:@"112"] forState:UIControlStateNormal];
-        
-        [self.window.rootViewController presentViewController:teaVC animated:YES completion:NULL];
-    }else{
-        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-        [self.myButton setBackgroundImage:[UIImage imageNamed:@"111"] forState:UIControlStateNormal];
-    }
-   
-    
-}
 
 - (void)next
 {
@@ -179,23 +155,6 @@
     [pic release];
     
     
-    self.k = 0;
-    
-    
-    UIImage *image = [UIImage imageNamed:@"111"];
-    
-    self.myButton = [Function createButtonWithFrame:CGRectMake(kScreenBounds.size.width - 80, kScreenBounds.size.height - 70, 50, 50) title:nil];
-    
-    [self.myButton setBackgroundImage:image forState:UIControlStateNormal];
-    self.myButton.layer.cornerRadius = 25;
-    self.myButton.layer.masksToBounds = YES;
-    [self.myButton addTarget:self action:@selector(teaAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    
-    [self.window addSubview:self.myButton];
-    
-    
     
     [proVC release];
     [monoVC release];
@@ -236,7 +195,7 @@
 - (void)dealloc
 {
     
-    [_myButton release];
+
     
     [super dealloc];
 }

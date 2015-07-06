@@ -52,7 +52,7 @@
         }];
     
 
-    [self.tableView release];
+    [_tableView release];
     
 }
 - (NSMutableArray *)arr
@@ -133,7 +133,7 @@
     [HUD hide:YES];
     cell.label1.text = DataModel.Description;
      cell.label2.text = DataModel.title;
-    
+    [DataModel release];
      return cell;
     
     

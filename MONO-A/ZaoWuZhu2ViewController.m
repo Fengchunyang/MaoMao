@@ -26,7 +26,8 @@
     [self.view addSubview: self.tableView];
     
     [self.tableView release];
-    
+    self.arr = [NSMutableArray array];
+
     self.num = 1;
     
     self.tableView.dataSource = self;

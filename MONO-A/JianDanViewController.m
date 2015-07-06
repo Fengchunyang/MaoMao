@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.tableView];
-    [self.tableView release];
+    [_tableView release];
    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -78,7 +78,7 @@
     if (data) {
         
     
-    self.bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    _bigDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     self.arr = [self.bigDic objectForKey:@"posts"];
     [self.tableView reloadData];
 
@@ -100,6 +100,7 @@
     
     cell.textLabel.text = DataModel.title;
     cell.detailTextLabel.text = DataModel.excerpt;
+    [DataModel release];
     return cell;
     
 }

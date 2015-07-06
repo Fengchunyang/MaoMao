@@ -193,13 +193,13 @@
     if ([_Hot integerValue] == 1) {
         
         _ModelCell = (ThirdModelCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-        //        [_ModelCell calculateHeight];
+       
         
         return _ModelCell.frame.size.height;
     }else{
         
         _PageCell = (ThirdPageModelCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-        //        [_PageCell calculateHeight];
+        
         
         return _PageCell.frame.size.height;
     }

@@ -20,7 +20,7 @@
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.view = self.tableView;
     self.tableView.backgroundColor = [UIColor blackColor];
-    [self.tableView release];
+    [_tableView release];
 }
 
 - (void)viewDidLoad {

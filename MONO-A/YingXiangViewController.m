@@ -24,7 +24,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.view addSubview:self.tableView];
-    [self.tableView release];
+    [_tableView release];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -102,6 +102,7 @@
     [HUD hide:YES];
     cell.label2.text = DataModel.title;
     cell.label1.text = DataModel.auther_name;
+    [DataModel release];
     return cell;
 }
 - (void)getDataFromUrl

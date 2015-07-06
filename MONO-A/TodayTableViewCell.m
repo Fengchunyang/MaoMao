@@ -56,7 +56,10 @@
     [self.contentView addSubview:self.title];
     [self.contentView addSubview:self.authorLabel];
     [self.contentView addSubview:self.leftLabel];
-    
+    [_leftLabel release];
+    [_title release];
+    [_authorLabel release];
+    [_topImageView release];
     
     
 }

@@ -23,7 +23,7 @@
     self.imaView.backgroundColor = [UIColor whiteColor];
     self.imaView.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:self.imaView];
-    [self.imaView release];
+    [_imaView release];
     
     
     

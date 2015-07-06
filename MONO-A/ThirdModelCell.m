@@ -41,16 +41,16 @@
     
     
     [self.contentView addSubview:self.label2];
-    [self.label2 release];
+    [_label2 release];
     
     [self.contentView addSubview:self.imaView];
-    [self.imaView release];
+    [_imaView release];
     
     [self.contentView addSubview:self.headView];
-    [self.headView release];
+    [_headView release];
     
     [self.contentView addSubview:self.label1];
-    [self.label1 release];
+    [_label1 release];
     
 }
 

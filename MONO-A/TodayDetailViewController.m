@@ -25,7 +25,7 @@
     //[self getDataFromNet];
     
     self.web = [[UIWebView alloc]initWithFrame:self.view.bounds];
-    [self.web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.todayDatailURL]]];
+    [_web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.todayDatailURL]]];
     [self.view addSubview:_web];
     [_web release];
     

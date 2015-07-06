@@ -65,6 +65,7 @@ const CGFloat RPSlidingMenuFeaturedImageCoverAlpha = 0.2f;
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.textLabel];
+    [self.textLabel release];
 }
 
 - (void)setupDetailTextLabel {
@@ -80,6 +81,7 @@ const CGFloat RPSlidingMenuFeaturedImageCoverAlpha = 0.2f;
     self.detailTextLabel.textColor = [UIColor whiteColor];
     self.detailTextLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.detailTextLabel];
+    [_detailTextLabel release];
 }
 
 - (void)setupImageView {
@@ -99,6 +101,8 @@ const CGFloat RPSlidingMenuFeaturedImageCoverAlpha = 0.2f;
     [self.backgroundImageView addSubview:self.imageCover];
     [self.contentView insertSubview:self.backgroundImageView atIndex:0];
     [self.contentView insertSubview:self.imageCover atIndex:1];
+    [self.backgroundImageView release];
+    [self.imageCover release];
 
 }
 

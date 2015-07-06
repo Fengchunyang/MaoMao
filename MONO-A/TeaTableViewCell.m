@@ -61,12 +61,12 @@
 //    [self.contentView addSubview:self.teaImageView];
     
     
-    self.titleLabel = [[UILabel alloc]init];
+    _titleLabel = [[UILabel alloc]init];
     self.titleLabel.backgroundColor = [UIColor orangeColor];
     self.titleLabel.font = [UIFont systemFontOfSize:20];
     [self.contentView addSubview:self.titleLabel];
     
-    self.contentLabel = [[UILabel alloc]init];
+    _contentLabel = [[UILabel alloc]init];
     self.contentLabel.backgroundColor = [UIColor purpleColor];
     [self.contentView addSubview:self.contentLabel];
 

@@ -20,9 +20,9 @@
 - (void)addSubviews
 {
     self.imaView = [[UIImageView alloc]initWithFrame:CGRectMake(kSpace, 2 * kSpace, (370 - 2 * kSpace ) / 2, 100)];
-    self.imaView.backgroundColor = [UIColor whiteColor];
+    _imaView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.imaView];
-    [self.imaView release];
+    [_imaView release];
     
     
     
@@ -32,7 +32,7 @@
     self.label1.textColor = [UIColor lightGrayColor];
     self.label1.numberOfLines = 0;
     [self.contentView addSubview:self.label1];
-    [self.label1 release];
+    [_label1 release];
     
     
     
@@ -41,7 +41,7 @@
     self.label2.font = [UIFont systemFontOfSize:15];
     self.label2.numberOfLines = 0;
     [self.contentView addSubview:self.label2];
-    [self.label2 release];
+    [_label2 release];
     
     
     

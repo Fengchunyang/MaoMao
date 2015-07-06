@@ -91,6 +91,7 @@
             if(controllerKeys.count == views.count)
                 _viewControllers = [[NSMutableDictionary alloc] initWithObjects:views
                                                                         forKeys:controllerKeys];
+            
             else{
                 // Something went wrong -> inform the client
                 NSException *exc = [[NSException alloc] initWithName:@"View Controllers error"

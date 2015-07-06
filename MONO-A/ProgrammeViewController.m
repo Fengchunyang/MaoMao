@@ -466,6 +466,7 @@
     today.TodayUrl = ((ProModel *)self.dataArray[indexPath.row]).api_url;
     
     [self presentViewController:today animated:YES completion:nil];
+    [today release];
 
 }
 

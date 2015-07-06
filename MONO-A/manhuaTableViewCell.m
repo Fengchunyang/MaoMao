@@ -31,8 +31,8 @@
         self.conlabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_imageview.frame)+5, CGRectGetMinY(_imageview.frame), self.contentView.frame.size.width - 15 - _imageview.frame.size.width ,_imageview.frame.size.height )];
        // _conlabel.backgroundColor = [UIColor yellowColor];
         [self.contentView addSubview:_conlabel];
-        [_imageview release];
-        [_conlabel release];
+        [self.imageview release];
+        [self.conlabel release];
         
     }
     return self;

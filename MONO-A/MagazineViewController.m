@@ -158,7 +158,7 @@
     cell.FromLabel.font = [UIFont systemFontOfSize:9.0];
     cell.FromLabel.textColor = [UIColor whiteColor];
     
-    
+    [model release];
     
     return cell;
 }

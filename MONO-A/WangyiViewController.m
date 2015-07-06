@@ -118,7 +118,9 @@
            
     cell.label2.text = dataModel.title;
     cell.label1.text = dataModel.auther_name;
-    return cell;
+    [HUD release];
+    [dataModel release];
+    return cell  ;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

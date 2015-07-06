@@ -56,11 +56,11 @@
     
     
     
-    self.collectView = [[UICollectionView alloc]initWithFrame:[UIScreen mainScreen].bounds collectionViewLayout:layout];
+    _collectView = [[UICollectionView alloc]initWithFrame:[UIScreen mainScreen].bounds collectionViewLayout:layout];
     
 
-    self.collectView.delegate = self;
-    self.collectView.dataSource = self;
+    _collectView.delegate = self;
+    _collectView.dataSource = self;
     
     [self.collectView registerClass:[RPSlidingMenuCell class] forCellWithReuseIdentifier:kIdent];
     
@@ -116,9 +116,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RPSlidingMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kIdent forIndexPath:indexPath];
-    PictorialModel *model = [[PictorialModel alloc]init];
+    PictorialModel *model =  self.dataArray[indexPath.row];
     
-    model =  [self.dataArray[indexPath.row] retain];
+    
     
     
         
@@ -127,7 +127,7 @@
     cell.detailTextLabel.text = model.descrip;
     [cell.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:model.photo.url] placeholderImage:[UIImage imageNamed:@"test.jpg"]];
     
-    [model release];
+  
 
     return cell;
 }

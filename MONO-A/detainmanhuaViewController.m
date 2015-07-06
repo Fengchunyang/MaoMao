@@ -19,12 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.webview = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _webview = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     NSURL * url = [NSURL URLWithString:_webstring];
     NSURLRequest * request = [[NSURLRequest alloc] initWithURL:url];
     [self.webview loadRequest:request];
     
     [self.view addSubview:_webview];
+ 
     [_webview release];
     [request release];
  

@@ -148,8 +148,7 @@
     
     
     // MRC
-    TodayModel *model = [[TodayModel alloc]init];
-    model = [self.dataArray[indexPath.row] retain];
+    TodayModel *model = self.dataArray[indexPath.row];
     //cell.textLabel.text = str;
     
     cell.title.text = model.title;
@@ -185,7 +184,7 @@
     
     [cell HeightForCell];
     
-    [model release];
+   
     
     return cell;
 }
@@ -214,6 +213,7 @@
     TodayDetailViewController *today = [[TodayDetailViewController alloc]init];
     today.todayDatailURL = ((TodayModel *)self.dataArray[indexPath.row]).full_url;
     [self presentViewController:today animated:YES completion:nil];
+    [today release];
 
 }
 /*

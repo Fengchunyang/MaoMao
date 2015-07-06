@@ -22,7 +22,10 @@
             self.conStr = [[dic objectForKey:@"text"]objectForKey:@"text" ];
             self.titleStr = [dic objectForKey:@"title"];
             self.subStr = [[dic objectForKey:@"program"] objectForKey:@"name"];
-            self.linkStr1 = [dic objectForKey:@"link"];
+            if (![[dic objectForKey:@"link"] isKindOfClass:[NSNull class]]) {
+                self.linkStr1 = [dic objectForKey:@"link"];
+            }
+            
             self.IntroStr = [[dic objectForKey:@"user"] objectForKey:@"screen_name"];
         }
         

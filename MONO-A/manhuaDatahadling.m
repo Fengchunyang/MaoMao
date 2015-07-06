@@ -71,7 +71,8 @@
         // NSLog(@"%@",dic);
        manhuaModel * model = [[manhuaModel alloc] initWithDictionary:dic];
         [Modelarray addObject:model];
-         NSLog(@"%@",Modelarray);
+        [model release];
+      
     }
     if (_delegate && [_delegate respondsToSelector:@selector(manhuaDatahandlingdidFinshLoadingModel:)]) {
         [_delegate manhuaDatahandlingdidFinshLoadingModel:Modelarray];

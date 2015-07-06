@@ -25,39 +25,39 @@
 {
     self= [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.BIGimage = [[UIImageView alloc] initWithFrame:CGRectMake(K_LEFT_MARGIN, K_TOP_MARGIN, 355, 200)];
+        _BIGimage = [[UIImageView alloc] initWithFrame:CGRectMake(K_LEFT_MARGIN, K_TOP_MARGIN, 355, 200)];
        // self.BIGimage.backgroundColor = [UIColor yellowColor];
         
         [self.contentView addSubview:_BIGimage];
        
-        self.subimage = [[UIImageView alloc] initWithFrame:CGRectMake(K_LEFT_MARGIN, CGRectGetMaxY(_BIGimage.frame)+5, 30, 50)];
+        _subimage = [[UIImageView alloc] initWithFrame:CGRectMake(K_LEFT_MARGIN, CGRectGetMaxY(_BIGimage.frame)+5, 30, 50)];
        // self.subimage.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_subimage];
        
         
   
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_subimage.frame)+5, CGRectGetMaxY(_BIGimage.frame)+5, 320, 30)];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_subimage.frame)+5, CGRectGetMaxY(_BIGimage.frame)+5, 320, 30)];
                // self.titleLabel.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_titleLabel];
     
-        self.conLabel  = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_titleLabel.frame), CGRectGetMaxY(_titleLabel.frame)+5, 320, 50)];
+        _conLabel  = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(_titleLabel.frame), CGRectGetMaxY(_titleLabel.frame)+5, 320, 50)];
         
        // self.conLabel.backgroundColor = [UIColor redColor];
         [self.contentView addSubview:_conLabel];
         
 
         
-        self.subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 20)];
+        _subLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 60, 20)];
        // self.subLabel.backgroundColor = [UIColor blackColor];
-        [self.BIGimage addSubview:_subLabel];
+        [_BIGimage addSubview:_subLabel];
         
-        self.aLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_subLabel.frame), 0, 40, 20)];
+        _aLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_subLabel.frame), 0, 40, 20)];
        // self.aLabel.backgroundColor = [UIColor redColor];
-        [self.BIGimage addSubview:_aLabel];
+        [_BIGimage addSubview:_aLabel];
         
-        self.FromLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_aLabel.frame), 0, 70, 20)];
+        _FromLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_aLabel.frame), 0, 70, 20)];
        // self.FromLabel.backgroundColor = [UIColor yellowColor];
-        [self.BIGimage addSubview:_FromLabel];
+        [_BIGimage addSubview:_FromLabel];
         
         
         [_aLabel release];

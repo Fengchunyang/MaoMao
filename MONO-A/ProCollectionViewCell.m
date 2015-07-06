@@ -38,21 +38,24 @@
 - (void)setupTextLabel
 {
     self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.font = [UIFont systemFontOfSize:20];
+    _titleLabel.font = [UIFont systemFontOfSize:20];
     [self.titleLabel setTextColor:[UIColor whiteColor]];
     [self.contentView addSubview:self.titleLabel];
+    [_titleLabel release];
 }
 
 - (void)setupDetailTextLabel
 {
     self.detailLabel = [[UILabel alloc]init];
     [self.contentView addSubview:self.detailLabel];
+    [_detailLabel release];
 }
 
 - (void)setupImageView
 {
     self.backImageView = [[UIImageView alloc]init];
     [self.contentView addSubview:self.backImageView];
+    [_backImageView release];
 }
 
 - (void)layoutSubviews

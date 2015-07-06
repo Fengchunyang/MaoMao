@@ -19,19 +19,25 @@
         UILabel * alabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 240)];
         alabel.backgroundColor = [UIColor blackColor];
         alabel.alpha = 0.5;
+        
+        
         UILabel * blabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 130, 50)];
         blabel.backgroundColor = [UIColor blackColor];
         blabel.alpha = 0.2;
         blabel.text = @"小8推荐";
         blabel.textColor = [UIColor whiteColor];
         blabel.font = [UIFont systemFontOfSize:35.0];
-       
+        
         
         [self.tupian addSubview:alabel];
       
         [self.tupian  addSubview:blabel];
         
         [self addSubview:_tupian];
+        [_tupian release];
+        [alabel release];
+        [blabel release];
+        
         
         
         
@@ -45,7 +51,8 @@
         conlabel2.backgroundColor = [UIColor whiteColor];
         [self addSubview:conlabel];
         [self addSubview:conlabel2];
-        
+        [conlabel release];
+        [conlabel2 release];
         
         
         
